@@ -81,4 +81,4 @@ hudView.messageLabel.text = @"This is a default activityView .";
 
 ## License
 
-JWiFi is released under the [MIT license](LICENSE). See LICENSE for details.
+JHUD is released under the [MIT license](LICENSE). See LICENSE for details.
