@@ -5,8 +5,8 @@
 
  ![](gif/01.gif) 
  ![](gif/02.gif)
- ![](gif/3.gif)
- ![](gif/4.gif)
+ ![](gif/03.gif)
+ ![](gif/04.gif)
 
 
 ## Requirements
