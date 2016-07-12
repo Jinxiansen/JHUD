@@ -73,11 +73,11 @@ hudView.messageLabel.text = @"This is a default activityView .";
 
 ## Contacts
 
-#####If you wish to contact me, email at: hi@jinxiansen.com
+####If you wish to contact me, email at: hi@jinxiansen.com
 
-######Tencent QQ: 463424863
-######新浪微博 : [@晋先森](http://weibo.com/3205872327/)
-######Twitter : [@jinxiansen](https://twitter.com/jinxiansen)
+#####Tencent QQ: 463424863
+#####新浪微博 : [@晋先森](http://weibo.com/3205872327/)
+#####Twitter : [@jinxiansen](https://twitter.com/jinxiansen)
 
 ## License
 
