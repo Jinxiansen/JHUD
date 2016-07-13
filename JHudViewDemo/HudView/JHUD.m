@@ -50,7 +50,7 @@
 -(void)configureBaseInfo
 {
     self.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.activityViewSize = CGSizeMake(50, 50);
+    self.activityViewSize = CGSizeMake(60, 60);
 }
 
 -(void)configureSubViews
@@ -124,7 +124,9 @@
     }
     self.activityView = [[UIActivityIndicatorView alloc]init];
     self.activityView.translatesAutoresizingMaskIntoConstraints = NO ;
-    self.activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite ;
+
+    // There are three kinds of style, WhiteLarge,White and Gray .
+    self.activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge ;//
     self.activityView.backgroundColor = [UIColor colorWithRed:(40/255.0f) green:(40/255.0f) blue:(40/255.0f) alpha:0.6f];
     self.activityView.layer.cornerRadius = 5;
     [self.activityView startAnimating];

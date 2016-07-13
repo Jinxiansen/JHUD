@@ -40,7 +40,7 @@
 -(void)showLoadingCustomAnimations
 {
     NSMutableArray * images = [NSMutableArray array];
-    for (int index = 0; index<=40; index++) {
+    for (int index = 0; index<=19; index++) {
         NSString * imageName = [NSString stringWithFormat:@"%d.png",index];
         UIImage *image = [UIImage imageNamed:imageName];
         [images addObject:image];
