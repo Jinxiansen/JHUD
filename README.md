@@ -11,7 +11,7 @@
 
 ## Requirements
 
-`JHUD` works on "Xcode 7.3 , iOS 8+  and requires ARC to build. 
+`JHUD` works on "Xcode 7.3 , iOS 6+  and requires ARC to build. 
 You will need the latest developer tools in order to build `JHUD`. Old Xcode versions might work, but compatibility will not be explicitly maintained.
 
 ### Source files
@@ -46,7 +46,7 @@ For more examples, including how to use JHUD , take a look at the bundled demo p
 ####`JHUD` 是一个加载数据时用于全屏显示的HUD，使用Objective-C编写.
 
 ##须知
-`JHUD` 基于 "Xcode 7.3 , iOS 8+ 和ARC环境下完成的，请使用最新正式版来编译JHUD,旧版本的Xcode可能有效，但不保证会出现一些兼容性问题。
+`JHUD` 基于 "Xcode 7.3 , iOS 6+ 和ARC环境下完成的，请使用最新正式版来编译JHUD,旧版本的Xcode可能有效，但不保证会出现一些兼容性问题。
 
 ##手动安装
 1. 通过 Clone or download 下载最新版。
