@@ -13,6 +13,7 @@
 
 #define KLastWindow [[UIApplication sharedApplication].windows lastObject]
 
+#define JHUDMainThreadAssert() NSAssert([NSThread isMainThread], @"JHUD needs to be accessed on the main thread.");
 
 @interface JHUD ()
 
@@ -38,6 +39,7 @@
 -(void)showAtView:(UIView *)view hudType:(JHUDLoadingType)hudType
 {
     NSAssert(![self isEmptySize], @"啊! self 的 size 没有设置正确 ！self.frame not be nil(JHudView)");
+    JHUDMainThreadAssert();
 
     self.hudType = hudType;
 
@@ -69,7 +71,6 @@
     _activityViewSize = activityViewSize;
 
 }
-
 
 -(void)showHudAtView:(UIView *)view
 {
@@ -184,6 +185,8 @@
 
 -(void)hideHudView
 {
+    JHUDMainThreadAssert();
+
     if (self.superview) {
 
         [UIView animateWithDuration:.2 animations:^{
