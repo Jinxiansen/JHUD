@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 
 -(void)showAtView:(UIView *)view hudType:(JHUDLoadingType)hudType;
 
--(void)hideHudView;
+-(void)hide;
 
 @end
 

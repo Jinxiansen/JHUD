@@ -35,17 +35,6 @@
     return self;
 }
 
-//
--(void)showAtView:(UIView *)view hudType:(JHUDLoadingType)hudType
-{
-    NSAssert(![self isEmptySize], @"啊! self 的 size 没有设置正确 ！self.frame not be nil(JHudView)");
-
-    self.hudType = hudType;
-
-    [self setupSubViewsWithHudType:hudType];
-    [self showHudAtView:view];
-}
-
 -(void)configureBaseInfo
 {
     self.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -65,19 +54,31 @@
 
 }
 
+//
+-(void)showAtView:(UIView *)view hudType:(JHUDLoadingType)hudType
+{
+    NSAssert(![self isEmptySize], @"啊! self 的 size 没有设置正确 ！self.frame not be nil(JHudView)");
+
+    self.hudType = hudType;
+
+    [self setupSubViewsWithHudType:hudType];
+
+    [self hide];
+
+    [self dispatchMainQueue:^{
+
+        view ? [view addSubview:self]:[KLastWindow addSubview:self];
+        [self.superview bringSubviewToFront:self];
+    }];
+}
+
 -(void)setActivityViewSize:(CGSize)activityViewSize
 {
     _activityViewSize = activityViewSize;
 
 }
 
--(void)showHudAtView:(UIView *)view
-{
-    [self dispatchMainQueue:^{
-        view ? [view addSubview:self]:[KLastWindow addSubview:self];
-        [self.superview bringSubviewToFront:self];
-    }];
-}
+
 
 -(void)dispatchMainQueue:(dispatch_block_t)block
 {
@@ -190,7 +191,6 @@
 
     self.refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.refreshButton.translatesAutoresizingMaskIntoConstraints = NO;
-    self.refreshButton.tintColor = RGBHexAlpha(0x189cfb, 1);
     [self.refreshButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [self.refreshButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     self.refreshButton.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -201,20 +201,14 @@
     return self.refreshButton;
 }
 
--(void)hideHudView
+-(void)hide
 {
-    if (self.superview) {
+    [self dispatchMainQueue:^{
+        if (self.superview) {
+            [self removeFromSuperview];
+        }
+    }];
 
-       [self dispatchMainQueue:^{
-           [UIView animateWithDuration:.2 animations:^{
-               self.alpha = 0;
-           } completion:^(BOOL finished) {
-               [self removeFromSuperview];
-               self.alpha = 1;
-           }];
-           
-       }];
-    }
 }
 
 

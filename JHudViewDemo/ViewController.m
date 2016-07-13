@@ -26,8 +26,10 @@
     self.hudView.activityViewSize = CGSizeMake(70, 70);
     [self showLoadingActivityView];
 
+    __weak typeof(self)  _self = self;
     [self.hudView setJHUDReloadButtonClickedBlock:^() {
             NSLog(@"refreshButton");
+        [_self showLoadingActivityView];
     }];
 }
 
@@ -91,7 +93,7 @@
                        @"showLoadingFailure2"];
 
     SEL sel = NSSelectorFromString(sels[i++]);
-
+    NSLog(@"i = %d",i);
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [self performSelector:sel withObject:nil];
@@ -102,7 +104,7 @@
 
 - (IBAction)hideButtonClick:(UIButton *)sender {
 
-     [self.hudView hideHudView];
+     [self.hudView hide];
 }
  
 
