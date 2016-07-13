@@ -13,7 +13,7 @@
 
 #define KLastWindow [[UIApplication sharedApplication].windows lastObject]
 
-#define JHUDMainThreadAssert() NSAssert([NSThread isMainThread], @"JHUD needs to be accessed on the main thread.");
+//#define JHUDMainThreadAssert() NSAssert([NSThread isMainThread], @"JHUD needs to be accessed on the main thread.");
 
 @interface JHUD ()
 
@@ -39,7 +39,6 @@
 -(void)showAtView:(UIView *)view hudType:(JHUDLoadingType)hudType
 {
     NSAssert(![self isEmptySize], @"啊! self 的 size 没有设置正确 ！self.frame not be nil(JHudView)");
-    JHUDMainThreadAssert();
 
     self.hudType = hudType;
 
@@ -74,8 +73,19 @@
 
 -(void)showHudAtView:(UIView *)view
 {
-    view ? [view addSubview:self]:[KLastWindow addSubview:self];
+    [self dispatchMainQueue:^{
+        view ? [view addSubview:self]:[KLastWindow addSubview:self];
+        [self.superview bringSubviewToFront:self];
+    }];
 }
+
+-(void)dispatchMainQueue:(dispatch_block_t)block
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        block();
+    });
+}
+
 
 -(void)setCustomAnimationImages:(NSArray *)customAnimationImages
 {
@@ -99,20 +109,28 @@
             [self updateActivityHidden:YES refreshButtonHidden:YES isCustomAnimation:YES];
             break;
         }
-        case JHUDLoadingTypeNull:
-        {
-             [self updateActivityHidden:YES refreshButtonHidden:NO isCustomAnimation:NO];
-
-            break;
-        }
         case JHUDLoadingTypeFailure:
         {
-             [self updateActivityHidden:YES refreshButtonHidden:NO isCustomAnimation:NO];
+            [self remind];
+            [self updateActivityHidden:YES refreshButtonHidden:NO isCustomAnimation:NO];
             break;
         }
 
         default:
             break;
+    }
+}
+
+-(void)remind
+{
+    if (!self.topImageView.image) {
+        NSLog(@"Please set the topImageView image.(JHUD)");
+    }
+    if (!self.messageLabel.text.length) {
+         NSLog(@"Please set the messageLabel text.(JHUD)");
+    }
+    if (!self.refreshButton.titleLabel.text.length) {
+         NSLog(@"Please set the refreshButton.titleLabel text.(JHUD)");
     }
 }
 
@@ -159,7 +177,6 @@
     self.messageLabel.textColor = [UIColor lightGrayColor];
     self.messageLabel.font = [UIFont systemFontOfSize:16];
     self.messageLabel.backgroundColor = [UIColor clearColor];
-    self.messageLabel.text = @"Please wait...";
     self.messageLabel.numberOfLines = 0;
 
     return self.messageLabel;
@@ -174,7 +191,6 @@
     self.refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.refreshButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.refreshButton.tintColor = RGBHexAlpha(0x189cfb, 1);
-    [self.refreshButton setTitle:@"Refresh" forState:UIControlStateNormal];
     [self.refreshButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [self.refreshButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     self.refreshButton.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -187,16 +203,17 @@
 
 -(void)hideHudView
 {
-    JHUDMainThreadAssert();
-
     if (self.superview) {
 
-        [UIView animateWithDuration:.2 animations:^{
-            self.alpha = 0;
-        } completion:^(BOOL finished) {
-             [self removeFromSuperview];
-             self.alpha = 1;
-        }];
+       [self dispatchMainQueue:^{
+           [UIView animateWithDuration:.2 animations:^{
+               self.alpha = 0;
+           } completion:^(BOOL finished) {
+               [self removeFromSuperview];
+               self.alpha = 1;
+           }];
+           
+       }];
     }
 }
 
@@ -225,12 +242,10 @@
 
     // refreshButton..constraint
     [self addConstraintCenterXToView:self.refreshButton centerYToView:nil];
-    [self addConstarintWithTopView:self.messageLabel toBottomView:self.refreshButton constarint:0];
+    [self addConstarintWithTopView:self.messageLabel toBottomView:self.refreshButton  constarint:0];
     [self.refreshButton addConstraintWidth:250 height:40];
 
 //    NSLog(@"self.constraint.count %lu ",self.constraints.count);
-//     NSLog(@"self.messageLabel.constraint.count %lu ",self.messageLabel.constraints.count);
-//     NSLog(@"self.topImageView.constraints.count %lu ",self.topImageView.constraints.count);
 }
 
 -(void)layoutSubviews
@@ -238,7 +253,9 @@
     [super layoutSubviews];
 }
 
--(void)updateActivityHidden:(BOOL)isActivityHidden refreshButtonHidden:(BOOL)isRefreshButtonHidden isCustomAnimation:(BOOL)isCustomAnimation
+-(void)updateActivityHidden:(BOOL)isActivityHidden
+        refreshButtonHidden:(BOOL)isRefreshButtonHidden
+          isCustomAnimation:(BOOL)isCustomAnimation
 {
     isActivityHidden ? [self actiVityStopAnimating] :[self activityStartAnimating] ;
     isCustomAnimation ? [self topImageViewStartAnimating]:[self topImageViewStopAnimating];
@@ -274,11 +291,11 @@
 }
 
 
-// When JHUDLoadingTypeNull and JHUDLoadingTypeFailure, there will be a "refresh" button, and the method.
+// When JHUDLoadingTypeFailure, there will be a "refresh" button, and the method.
 -(void)refreshButtonClick
 {
-    if (self.JHUDExceptionsHandleBlock) {
-        self.JHUDExceptionsHandleBlock(self.hudType);
+    if (self.JHUDReloadButtonClickedBlock) {
+        self.JHUDReloadButtonClickedBlock();
     }
 }
 
@@ -293,43 +310,90 @@
 @end
 
 
+ 
 
-@implementation UIView (JHudAutoLayout)
+@implementation UIView (JHUDAutoLayout)
 
 - (void)addConstraintWidth:(CGFloat)width height:(CGFloat)height
 {
     if (width > 0) {
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:width]];
+        [self addConstraint:[NSLayoutConstraint
+                             constraintWithItem:self
+                             attribute:NSLayoutAttributeWidth
+                             relatedBy:NSLayoutRelationEqual
+                             toItem:nil
+                             attribute:0
+                             multiplier:1
+                             constant:width]];
     }
 
     if (height > 0) {
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:height]];
+        [self addConstraint:[NSLayoutConstraint
+                             constraintWithItem:self
+                             attribute:NSLayoutAttributeHeight
+                             relatedBy:NSLayoutRelationEqual
+                             toItem:nil
+                             attribute:0
+                             multiplier:1
+                             constant:height]];
     }
 }
-- (void)addConstraintCenterXToView:(UIView *)xView centerYToView:(UIView *)yView
+- (void)addConstraintCenterXToView:(UIView *)xView
+                     centerYToView:(UIView *)yView
 {
     if (xView) {
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:xView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+        [self addConstraint:[NSLayoutConstraint
+                             constraintWithItem:xView
+                             attribute:NSLayoutAttributeCenterX
+                             relatedBy:NSLayoutRelationEqual
+                             toItem:self
+                             attribute:NSLayoutAttributeCenterX
+                             multiplier:1.0
+                             constant:0]];
     }
 
     if (yView) {
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:yView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+        [self addConstraint:[NSLayoutConstraint
+                             constraintWithItem:yView
+                             attribute:NSLayoutAttributeCenterY
+                             relatedBy:NSLayoutRelationEqual
+                             toItem:self
+                             attribute:NSLayoutAttributeCenterY
+                             multiplier:1.0
+                             constant:0]];
     }
 }
 
-- (NSLayoutConstraint *)addConstraintCenterYToView:(UIView *)yView constant:(CGFloat)constant;
+- (NSLayoutConstraint *)addConstraintCenterYToView:(UIView *)yView
+                                          constant:(CGFloat)constant;
 {
     if (yView) {
-        NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint constraintWithItem:yView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:constant];
+        NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint
+                                                 constraintWithItem:yView
+                                                 attribute:NSLayoutAttributeCenterY
+                                                 relatedBy:NSLayoutRelationEqual
+                                                 toItem:self
+                                                 attribute:NSLayoutAttributeCenterY
+                                                 multiplier:1.0
+                                                 constant:constant];
         [self addConstraint:centerYConstraint];
         return centerYConstraint;
     }
     return nil;
 }
 
-- (NSLayoutConstraint *)addConstarintWithTopView:(UIView *)topView toBottomView:(UIView *)bottomView constarint:(CGFloat)constarint
+- (NSLayoutConstraint *)addConstarintWithTopView:(UIView *)topView
+                                    toBottomView:(UIView *)bottomView
+                                      constarint:(CGFloat)constarint
 {
-    NSLayoutConstraint *topButtomConstraint =[NSLayoutConstraint constraintWithItem:topView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:bottomView attribute:NSLayoutAttributeTop multiplier:1 constant:-constarint];
+    NSLayoutConstraint *topButtomConstraint =[NSLayoutConstraint
+                                              constraintWithItem:topView
+                                              attribute:NSLayoutAttributeBottom
+                                              relatedBy:NSLayoutRelationEqual
+                                              toItem:bottomView
+                                              attribute:NSLayoutAttributeTop
+                                              multiplier:1
+                                              constant:-constarint];
     [self addConstraint:topButtomConstraint];
     return topButtomConstraint;
 }

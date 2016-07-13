@@ -11,16 +11,15 @@
 typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
     JHUDLoadingTypeActivity = 0,
     JHUDLoadingTypeCustomAnimations,
-    JHUDLoadingTypeNull,
     JHUDLoadingTypeFailure,
 };
 
 @interface JHUD : UIView
 
 /**
- *  When JHUDLoadingTypeNull and JHUDLoadingTypeFailure, there will be a "refresh" button, and the method.
+ *  When JHUDLoadingTypeFailure, there will be a "refresh" button, and the method.
  */
-@property (nonatomic)  void(^JHUDExceptionsHandleBlock)(JHUDLoadingType hudType); 
+@property (nonatomic)  void(^JHUDReloadButtonClickedBlock)();
 
 @property (nonatomic) UIImageView  *topImageView;
 
@@ -47,24 +46,28 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 @end
 
 
+
+
 @interface UIView (JHUDAutoLayout)
 
-- (void)addConstraintWidth:(CGFloat)width height:(CGFloat)height;
+- (void)addConstraintWidth:(CGFloat)width
+                    height:(CGFloat)height;
 
-- (void)addConstraintCenterXToView:(UIView *)xView centerYToView:(UIView *)yView;
+- (void)addConstraintCenterXToView:(UIView *)xView
+                     centerYToView:(UIView *)yView;
 
-- (NSLayoutConstraint *)addConstraintCenterYToView:(UIView *)yView constant:(CGFloat)constant;
+- (NSLayoutConstraint *)addConstraintCenterYToView:(UIView *)yView
+                                          constant:(CGFloat)constant;
 
-- (NSLayoutConstraint *)addConstarintWithTopView:(UIView *)topView toBottomView:(UIView *)bottomView constarint:(CGFloat)constarint;
+- (NSLayoutConstraint *)addConstarintWithTopView:(UIView *)topView
+                                    toBottomView:(UIView *)bottomView
+                                      constarint:(CGFloat)constarint;
 
 - (void)removeConstraintWithAttribte:(NSLayoutAttribute)attribute;
 
 - (void)removeAllConstraints;
 
 @end
-
-
-
 
 
 

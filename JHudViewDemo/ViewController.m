@@ -20,13 +20,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // 建议基类中Lazy创建，进行二次封装，使用时直接调用，避免子类中频繁创建产生冗余代码的问题。
     self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
 
-//    self.hudView.activityViewSize = CGSizeMake(70, 70);
+    self.hudView.activityViewSize = CGSizeMake(70, 70);
     [self showLoadingActivityView];
 
-    [self.hudView setJHUDExceptionsHandleBlock:^(JHUDLoadingType type) {
-        NSLog(@"Loading Type : %lu",(unsigned long)type);
+    [self.hudView setJHUDReloadButtonClickedBlock:^() {
+            NSLog(@"refreshButton");
     }];
 }
 
@@ -57,24 +58,23 @@
 }
 
 
--(void)showLoadingNull
+-(void)showLoadingFailure
 {
     self.hudView.messageLabel.text = @"Can't get data, please make sure the interface is correct !";
     [self.hudView.refreshButton setTitle:@"Refresh" forState:UIControlStateNormal];
-    self.hudView.topImageView.image = [UIImage imageNamed:@"failed"];
+    self.hudView.topImageView.image = [UIImage imageNamed:@"null"];
 
-    [self.hudView showAtView:self.view hudType:JHUDLoadingTypeNull];
+    [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
     
 }
 
--(void)showLoadingFailure
+-(void)showLoadingFailure2
 {
      self.hudView.messageLabel.text = @"Failed to get data, please try again later";
      [self.hudView.refreshButton setTitle:@"Refresh ?" forState:UIControlStateNormal];
      self.hudView.topImageView.image = [UIImage imageNamed:@"nullData"];
 
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
-
 }
 
 - (IBAction)ButtonClick:(UIButton *)sender {
@@ -87,8 +87,8 @@
 
     NSArray * sels = @[@"showLoadingActivityView",
                        @"showLoadingCustomAnimations",
-                       @"showLoadingNull",
-                       @"showLoadingFailure"];
+                       @"showLoadingFailure",
+                       @"showLoadingFailure2"];
 
     SEL sel = NSSelectorFromString(sels[i++]);
 
