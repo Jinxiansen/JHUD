@@ -39,6 +39,7 @@
 {
     self.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.activityViewSize = CGSizeMake(60, 60);
+    self.topImageViewSize = CGSizeMake(100, 100);
 }
 
 -(void)configureSubViews
@@ -76,9 +77,20 @@
 {
     _activityViewSize = activityViewSize;
 
+    [self setNeedsUpdateConstraints];
 }
 
+-(void)setTopImageViewSize:(CGSize)topImageViewSize
+{
+    _topImageViewSize = topImageViewSize;
 
+    [self setNeedsUpdateConstraints];
+}
+
++(BOOL)requiresConstraintBasedLayout
+{
+    return YES;
+}
 
 -(void)dispatchMainQueue:(dispatch_block_t)block
 {
@@ -214,13 +226,14 @@
 
 -(void)updateConstraints
 {
-    [super updateConstraints];
 
     [self removeAllConstraints];
 
     [self.refreshButton removeAllConstraints];
     [self.messageLabel removeConstraintWithAttribte:NSLayoutAttributeWidth];
-
+    [self.topImageView removeAllConstraints];
+    [self.activityView removeAllConstraints];
+    
     // messageLabel.constraint
     [self addConstraintCenterXToView:self.messageLabel centerYToView:self.messageLabel];
     [self.messageLabel addConstraintWidth:250 height:0];
@@ -233,13 +246,16 @@
     // topImageView..constraint
     [self addConstraintCenterXToView:self.topImageView centerYToView:nil];
     [self addConstarintWithTopView:self.topImageView toBottomView:self.messageLabel constarint:10];
+    [self.topImageView addConstraintWidth:self.topImageViewSize.width height:self.topImageViewSize.height];
 
     // refreshButton..constraint
     [self addConstraintCenterXToView:self.refreshButton centerYToView:nil];
-    [self addConstarintWithTopView:self.messageLabel toBottomView:self.refreshButton  constarint:0];
+    [self addConstarintWithTopView:self.messageLabel toBottomView:self.refreshButton constarint:0];
     [self.refreshButton addConstraintWidth:250 height:40];
 
 //    NSLog(@"self.constraint.count %lu ",self.constraints.count);
+
+     [super updateConstraints];
 }
 
 -(void)layoutSubviews

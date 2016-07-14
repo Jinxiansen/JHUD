@@ -23,8 +23,6 @@
     // 建议基类中Lazy创建，进行二次封装，使用时直接调用，避免子类中频繁创建产生冗余代码的问题。
     self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
 
-    self.hudView.activityViewSize = CGSizeMake(70, 70);
-    
     [self showLoadingActivityView];
 
     __weak typeof(self)  _self = self;
@@ -67,12 +65,14 @@
     [self.hudView.refreshButton setTitle:@"Refresh" forState:UIControlStateNormal];
     self.hudView.topImageView.image = [UIImage imageNamed:@"null"];
 
+//    self.hudView.topImageViewSize = CGSizeMake(150, 150);
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
-    
+
 }
 
 -(void)showLoadingFailure2
 {
+//     self.hudView.topImageViewSize = CGSizeMake(50, 50);
      self.hudView.messageLabel.text = @"Failed to get data, please try again later";
      [self.hudView.refreshButton setTitle:@"Refresh ?" forState:UIControlStateNormal];
      self.hudView.topImageView.image = [UIImage imageNamed:@"nullData"];

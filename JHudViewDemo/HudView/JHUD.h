@@ -34,6 +34,8 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 
 @property (nonatomic) CGSize activityViewSize;
 
+@property (nonatomic) CGSize topImageViewSize;
+
 /**
  *  Only when JHUDLoadingType is JHUDLoadingTypeCustomAnimations will only take effect .
  */
@@ -44,7 +46,6 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 -(void)hide;
 
 @end
-
 
 
 
