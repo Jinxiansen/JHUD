@@ -35,7 +35,7 @@ hudView.messageLabel.text = @"This is a default activityView .";
 [hudView showAtView:self.view hudType:JHUDLoadingTypeActivity];
 
 //hide 
-[hudView hideHudView];
+[hudView hide];
 
 ```
 
@@ -64,7 +64,7 @@ hudView.messageLabel.text = @"This is a default activityView .";
 [hudView showAtView:self.view hudType:JHUDLoadingTypeActivity];
 
 //隐藏 
-[hudView hideHudView];
+[hudView hide];
 
 ```
 
@@ -75,7 +75,6 @@ hudView.messageLabel.text = @"This is a default activityView .";
 
 ####If you wish to contact me, email at: hi@jinxiansen.com
 
-#####Tencent QQ: 463424863
 #####新浪微博 : [@晋先森](http://weibo.com/3205872327/)
 #####Twitter : [@jinxiansen](https://twitter.com/jinxiansen)
 
