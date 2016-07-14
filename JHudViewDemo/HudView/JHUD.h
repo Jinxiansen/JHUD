@@ -19,33 +19,33 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 /**
  *  When JHUDLoadingTypeFailure, there will be a "refresh" button, and the method.
  */
-@property (nonatomic)  void(^JHUDReloadButtonClickedBlock)();
+@property (nonatomic,copy)  void(^JHUDReloadButtonClickedBlock)();
 
-@property (nonatomic) UIImageView  *topImageView;
+@property (nonatomic,strong) UIImageView  *topImageView;
 
-@property (nonatomic) UILabel  *messageLabel;
+@property (nonatomic,strong) UILabel  *messageLabel;
 
-@property (nonatomic) UIButton * refreshButton;
+@property (nonatomic,strong) UIButton * refreshButton;
 
 /**
  *  Only when JHUDLoadingType is JHUDLoadingTypeActivity will only take effect .
  */
-@property (nonatomic) UIActivityIndicatorView * activityView;
+@property (nonatomic,strong) UIActivityIndicatorView * activityView;
 
 /**
  *  The default size is CGSizeMake (60, 60) .
  */
-@property (nonatomic) CGSize activityViewSize;
+@property (nonatomic,assign) CGSize activityViewSize;
 
 /**
  *  The default size is CGSizeMake (100, 100).
  */
-@property (nonatomic) CGSize topImageViewSize;
+@property (nonatomic,assign) CGSize topImageViewSize;
 
 /**
  *  Only when JHUDLoadingType is JHUDLoadingTypeCustomAnimations will only take effect .
  */
-@property (nonatomic) NSArray  *customAnimationImages;
+@property (nonatomic,strong) NSArray  *customAnimationImages;
 
 -(void)showAtView:(UIView *)view hudType:(JHUDLoadingType)hudType;
 
