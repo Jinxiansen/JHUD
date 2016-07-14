@@ -32,8 +32,14 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
  */
 @property (nonatomic) UIActivityIndicatorView * activityView;
 
+/**
+ *  The default size is CGSizeMake (60, 60) .
+ */
 @property (nonatomic) CGSize activityViewSize;
 
+/**
+ *  The default size is CGSizeMake (100, 100).
+ */
 @property (nonatomic) CGSize topImageViewSize;
 
 /**
