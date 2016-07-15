@@ -4,7 +4,7 @@
 
 
  ![](gif/01.gif) 
- ![](gif/02.gif)
+ ![](gif/2.gif)
  ![](gif/03.gif)
  ![](gif/04.gif)
  ![](gif/05.gif)
