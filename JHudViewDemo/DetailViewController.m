@@ -85,7 +85,7 @@
 {
     self.hudView.messageLabel.text = @"hello ,this is a circleJoin animation";
     self.hudView.indicatorForegroundColor = JHUDRGBA(60, 139, 246, .5);
-    self.hudView.indicatorBackGroundColor = JHUDRGBA(185, 186, 200, 1);
+    self.hudView.indicatorBackGroundColor = JHUDRGBA(185, 186, 200, 0.3);
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircleJoin];
 }
 
