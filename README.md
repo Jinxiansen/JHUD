@@ -3,10 +3,12 @@
 ####`JHUD` is a full screen of the HUD when loading the data (Objective-C) .
 
 
- ![](gif/01.gif) 
- ![](gif/02.gif)
- ![](gif/03.gif)
- ![](gif/04.gif)
+ ![](gif/1.gif) 
+ ![](gif/2.gif)
+ ![](gif/3.gif)
+ ![](gif/4.gif)
+ ![](gif/5.gif)
+ ![](gif/6.gif)
 
 
 ## Requirements
@@ -29,10 +31,10 @@ Alternatively you can directly add the `JHUD.h` and `JHUD.m` source files to you
 ```
 hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
 
-hudView.messageLabel.text = @"This is a default activityView .";
+hudView.messageLabel.text = @"hello ,this is a circle animation";
 
 //show
-[hudView showAtView:self.view hudType:JHUDLoadingTypeActivity];
+[hudView showAtView:self.view hudType:JHUDLoadingTypeCircle];
 
 //hide 
 [hudView hide];
@@ -58,10 +60,10 @@ For more examples, including how to use JHUD , take a look at the bundled demo p
 ```
 hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
 
-hudView.messageLabel.text = @"This is a default activityView .";
+hudView.messageLabel.text = @"hello ,this is a circle animation";
 
 //显示
-[hudView showAtView:self.view hudType:JHUDLoadingTypeActivity];
+[hudView showAtView:self.view hudType:JHUDLoadingTypeCircle];
 
 //隐藏 
 [hudView hide];
