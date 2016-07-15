@@ -7,11 +7,14 @@
 //
 
 #import "ViewController.h"
-#import "JHUD.h"
+#import "DetailViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic) JHUD *hudView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic) NSArray  *datas;
+
 
 @end
 
@@ -20,94 +23,48 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // 建议基类中Lazy创建，进行二次封装，使用时直接调用，避免子类中频繁创建产生冗余代码的问题。
-    self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
-
-    [self showLoadingActivityView];
-
-    __weak typeof(self)  _self = self;
-    [self.hudView setJHUDReloadButtonClickedBlock:^() {
-            NSLog(@"refreshButton");
-        [_self showLoadingActivityView];
-    }];
+    self.datas = @[@"loadingCircleAnimation",
+                   @"loadingCircleJoinAnimation",
+                   @"loadingDotAnimation",
+                   @"loadingCustomAnimations",
+                   @"loadingFailure",
+                   @"loadingFailure2"
+                   ];
+    
+    [self.tableView reloadData];
 }
 
--(void)showLoadingActivityView
-{
-    self.hudView.messageLabel.text = @"This is a default activityView .";
+#pragma mark  --  <UITableViewDelegate,UITableViewDataSource>
 
-    [self.hudView showAtView:self.view hudType:JHUDLoadingTypeActivity];
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _datas.count;
 }
 
--(void)showLoadingCustomAnimations
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray * images = [NSMutableArray array];
-    for (int index = 0; index<=19; index++) {
-        NSString * imageName = [NSString stringWithFormat:@"%d.png",index];
-        UIImage *image = [UIImage imageNamed:imageName];
-        [images addObject:image];
+    static NSString * cellID = @"JHUD";
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    cell.textLabel.text = _datas[indexPath.row];
 
-    self.hudView.customAnimationImages = images;
-    self.hudView.messageLabel.text = @"有些时候，我会一个人背着包随处走走，我喜欢独自漫步的感觉，沿着具有传奇色彩的世纪大道，伴着昏黄怀旧的路灯，走过霓虹灯照耀下的外滩，东方明珠塔，金茂大厦。那时候可以静心思考技术疑问，或回忆过往的青葱岁月，也可以感受大上海的日与夜，体验这座城市的广度与深度。或许，风情的上海就是一个属于创造与实现梦想的地方，但是勤奋与努力是你在这里立足的根本，她就像莫斯科一样，不相信眼泪也不同情弱者。";
-    [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCustomAnimations];
-
-    // Recommend two web sites
-    // http://preloaders.net/en/people_and_animals
-    // https://convertio.co/zh/gif-png/
-    // http://spiffygif.com
+    return cell;
 }
 
-
--(void)showLoadingFailure
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.hudView.messageLabel.text = @"Can't get data, please make sure the interface is correct !";
-    [self.hudView.refreshButton setTitle:@"Refresh" forState:UIControlStateNormal];
-    self.hudView.topImageView.image = [UIImage imageNamed:@"null"];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-//    self.hudView.topImageViewSize = CGSizeMake(150, 150);
-    [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
-
-}
-
--(void)showLoadingFailure2
-{
-//     self.hudView.topImageViewSize = CGSizeMake(50, 50);
-     self.hudView.messageLabel.text = @"Failed to get data, please try again later";
-     [self.hudView.refreshButton setTitle:@"Refresh ?" forState:UIControlStateNormal];
-     self.hudView.topImageView.image = [UIImage imageNamed:@"nullData"];
-
-    [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
-}
-
-- (IBAction)ButtonClick:(UIButton *)sender {
-
-    static int i = 1;
-
-    if (i>3) {
-        i=0;
-    }
-
-    NSArray * sels = @[@"showLoadingActivityView",
-                       @"showLoadingCustomAnimations",
-                       @"showLoadingFailure",
-                       @"showLoadingFailure2"];
-
-    SEL sel = NSSelectorFromString(sels[i++]);
-//    NSLog(@"i = %d",i);
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [self performSelector:sel withObject:nil];
-#pragma clang diagnostic pop
-
+    DetailViewController * detailVC = [DetailViewController new];
+    detailVC.selName = _datas[indexPath.row];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 
-- (IBAction)hideButtonClick:(UIButton *)sender {
-
-     [self.hudView hide];
-}
- 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

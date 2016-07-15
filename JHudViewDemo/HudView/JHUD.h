@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
-    JHUDLoadingTypeActivity = 0,
+    JHUDLoadingTypeCircle = 0,
+    JHUDLoadingTypeCircleJoin,
+    JHUDLoadingTypeDot,
     JHUDLoadingTypeCustomAnimations,
     JHUDLoadingTypeFailure,
 };
@@ -21,31 +23,29 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
  */
 @property (nonatomic,copy)  void(^JHUDReloadButtonClickedBlock)();
 
-@property (nonatomic,strong) UIImageView  *topImageView;
+@property (nonatomic,strong) UIView  *indicatorView;
 
 @property (nonatomic,strong) UILabel  *messageLabel;
 
 @property (nonatomic,strong) UIButton * refreshButton;
 
-/**
- *  Only when JHUDLoadingType is JHUDLoadingTypeActivity will only take effect .
- */
-@property (nonatomic,strong) UIActivityIndicatorView * activityView;
+// Default color is [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.2]
+@property (nonatomic,strong) UIColor  *indicatorBackGroundColor;//
+
+// Default color is  [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.6]
+@property (nonatomic,strong) UIColor  *indicatorForegroundColor;
 
 /**
- *  The default size is CGSizeMake (60, 60) .
+ *  Only JHUDLoadingType is JHUDLoadingTypeCustomAnimations or JHUDLoadingTypeFailure, indicatorViewSize values can be changed.
  */
-@property (nonatomic,assign) CGSize activityViewSize;
-
-/**
- *  The default size is CGSizeMake (100, 100).
- */
-@property (nonatomic,assign) CGSize topImageViewSize;
+@property (nonatomic,assign) CGSize indicatorViewSize;
 
 /**
  *  Only when JHUDLoadingType is JHUDLoadingTypeCustomAnimations will only take effect .
  */
 @property (nonatomic,strong) NSArray  *customAnimationImages;
+
+@property (nonatomic,strong) UIImage  *customImage;
 
 -(void)showAtView:(UIView *)view hudType:(JHUDLoadingType)hudType;
 
@@ -75,6 +75,35 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 - (void)removeAllConstraints;
 
 @end
+
+@interface UIView (MainQueue)
+
+-(void)dispatchMainQueue:(dispatch_block_t)block;
+
+@end
+
+
+
+typedef NS_ENUM(NSUInteger, JHUDAnimationType) {
+    JHUDAnimationTypeCircle = 0,
+    JHUDAnimationTypeCircleJoin,
+    JHUDAnimationTypeDot,
+};
+
+@interface JHUDLoadingAnimationView : UIView
+
+@property (nonatomic,assign) NSInteger  count;
+
+@property (nonatomic) UIColor  *defaultBackGroundColor;//
+
+@property (nonatomic) UIColor  *foregroundColor;
+
+- (void)showAnimationAtView:(UIView *)view animationType:(JHUDAnimationType)animationType;
+
+-(void)removeSubLayer;
+
+@end
+
 
 
 

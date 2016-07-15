@@ -8,16 +8,19 @@
 
 #import "JHUD.h"
 
-// 格式 0xff3737
-#define RGBHexAlpha(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
-
 #define KLastWindow [[UIApplication sharedApplication].windows lastObject]
 
 //#define JHUDMainThreadAssert() NSAssert([NSThread isMainThread], @"JHUD needs to be accessed on the main thread.");
 
+#pragma mark -  JHUD Class
+
 @interface JHUD ()
 
 @property (nonatomic) JHUDLoadingType hudType;
+
+@property (nonatomic,strong) JHUDLoadingAnimationView  *loadingView;
+
+@property (nonatomic,strong) UIImageView  *imageView;
 
 @end
 
@@ -38,33 +41,32 @@
 -(void)configureBaseInfo
 {
     self.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.activityViewSize = CGSizeMake(60, 60);
-    self.topImageViewSize = CGSizeMake(100, 100);
+    self.indicatorViewSize = CGSizeMake(100, 100);
 }
 
 -(void)configureSubViews
 {
-    // self.topImageView and self.activityView as well as the constraint.
-    // Both will not appear at the same time .
-    [self addSubview:self.topImageView];
-    [self addSubview:self.activityView];
-
+    [self addSubview:self.indicatorView];
+    
     [self addSubview:self.messageLabel];
 
     [self addSubview:self.refreshButton];
 
+    [self.indicatorView addSubview:self.loadingView];
+    [self.indicatorView addSubview:self.imageView];
 }
 
-//
+#pragma mark - show method 
+
 -(void)showAtView:(UIView *)view hudType:(JHUDLoadingType)hudType
 {
     NSAssert(![self isEmptySize], @"啊! self 的 size 没有设置正确 ！self.frame not be nil(JHudView)");
 
     self.hudType = hudType;
 
-    [self setupSubViewsWithHudType:hudType];
-
     [self hide];
+
+    [self setupSubViewsWithHudType:hudType];
 
     [self dispatchMainQueue:^{
 
@@ -73,18 +75,59 @@
     }];
 }
 
--(void)setActivityViewSize:(CGSize)activityViewSize
+-(void)hide
 {
-    _activityViewSize = activityViewSize;
+    [self dispatchMainQueue:^{
+        if (self.superview) {
+            [self removeFromSuperview];
+            [self.loadingView removeSubLayer];
+        }
+    }];
+
+}
+
+
+-(void)setindicatorViewSize:(CGSize)indicatorViewSize
+{
+    _indicatorViewSize = indicatorViewSize;
 
     [self setNeedsUpdateConstraints];
 }
 
--(void)setTopImageViewSize:(CGSize)topImageViewSize
+-(void)setCustomAnimationImages:(NSArray *)customAnimationImages
 {
-    _topImageViewSize = topImageViewSize;
+    _customAnimationImages = customAnimationImages;
 
+     if (customAnimationImages.count>1) {
+         self.imageView.animationImages = _customAnimationImages;
+         [self.imageView startAnimating];
+     }
     [self setNeedsUpdateConstraints];
+    [self setNeedsLayout];
+}
+
+-(void)setCustomImage:(UIImage *)customImage
+{
+    _customImage = customImage;
+
+    [self.imageView stopAnimating];
+
+    self.imageView.image = customImage;
+}
+
+-(void)setIndicatorBackGroundColor:(UIColor *)indicatorBackGroundColor
+{
+    _indicatorBackGroundColor = indicatorBackGroundColor;
+    self.loadingView.defaultBackGroundColor = _indicatorBackGroundColor;
+
+}
+
+-(void)setIndicatorForegroundColor:(UIColor *)indicatorForegroundColor
+{
+    _indicatorForegroundColor = indicatorForegroundColor;
+
+    self.loadingView.foregroundColor = _indicatorForegroundColor;
+
 }
 
 +(BOOL)requiresConstraintBasedLayout
@@ -92,53 +135,62 @@
     return YES;
 }
 
--(void)dispatchMainQueue:(dispatch_block_t)block
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        block();
-    });
-}
-
-
--(void)setCustomAnimationImages:(NSArray *)customAnimationImages
-{
-    _customAnimationImages = customAnimationImages;
-
-    if (customAnimationImages.count>1) {
-        self.topImageView.animationImages = _customAnimationImages;
-    }
-}
-
 - (void)setupSubViewsWithHudType:(JHUDLoadingType)hudType
 {
+    hudType == JHUDLoadingTypeFailure ?
+    [self isShowRefreshButton:YES]:
+    [self isShowRefreshButton:NO];
+
+    if ((hudType == JHUDLoadingTypeCustomAnimations) | (hudType == JHUDLoadingTypeFailure) ) {
+        self.imageView.hidden = NO;
+        [self.loadingView removeFromSuperview];
+
+    }else
+    {
+       self.imageView.hidden = YES;
+       self.indicatorViewSize = CGSizeMake(100, 100);
+       if (!self.loadingView.superview) {
+         [self.indicatorView addSubview:self.loadingView];
+       }
+    }
+
     switch (hudType) {
-        case JHUDLoadingTypeActivity:
+        case JHUDLoadingTypeCircle:
         {
-            [self updateActivityHidden:NO refreshButtonHidden:YES isCustomAnimation:NO];
+            [self.loadingView showAnimationAtView:self animationType:JHUDAnimationTypeCircle];
+            break;
+        }
+        case JHUDLoadingTypeCircleJoin:
+        {
+            [self.loadingView showAnimationAtView:self animationType:JHUDAnimationTypeCircleJoin];
+
+            break;
+        }
+        case JHUDLoadingTypeDot:
+        {
+            [self.loadingView showAnimationAtView:self animationType:JHUDAnimationTypeDot];
+
             break;
         }
         case JHUDLoadingTypeCustomAnimations:
         {
-            [self updateActivityHidden:YES refreshButtonHidden:YES isCustomAnimation:YES];
+
             break;
         }
         case JHUDLoadingTypeFailure:
         {
             [self remind];
-            [self updateActivityHidden:YES refreshButtonHidden:NO isCustomAnimation:NO];
             break;
         }
 
         default:
             break;
     }
+
 }
 
 -(void)remind
 {
-    if (!self.topImageView.image) {
-        NSLog(@"Please set the topImageView image.(JHUD)");
-    }
     if (!self.messageLabel.text.length) {
          NSLog(@"Please set the messageLabel text.(JHUD)");
     }
@@ -148,34 +200,43 @@
 }
 
 
--(UIActivityIndicatorView *)activityView
+#pragma mark  --  Lazy method
+
+-(JHUDLoadingAnimationView *)loadingView
 {
-    if (_activityView) {
-        return _activityView;
+    if (_loadingView) {
+        return _loadingView;
     }
-    self.activityView = [[UIActivityIndicatorView alloc]init];
-    self.activityView.translatesAutoresizingMaskIntoConstraints = NO ;
+    self.loadingView = [[JHUDLoadingAnimationView alloc]init];
+    self.loadingView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.loadingView.backgroundColor = [UIColor clearColor];
 
-    // There are three kinds of style, WhiteLarge,White and Gray .
-    self.activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge ;//
-    self.activityView.backgroundColor = [UIColor colorWithRed:(40/255.0f) green:(40/255.0f) blue:(40/255.0f) alpha:0.6f];
-    self.activityView.layer.cornerRadius = 5;
-    [self.activityView startAnimating];
-
-    return self.activityView;
+    return self.loadingView;
 }
 
--(UIImageView *)topImageView
+-(UIView *)indicatorView
 {
-    if (_topImageView) {
-        return _topImageView;
+    if (_indicatorView) {
+        return _indicatorView;
     }
-    self.topImageView = [[UIImageView alloc]init];
-    self.topImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.topImageView.animationDuration = 1;
-    self.topImageView.animationRepeatCount = 0;
+    self.indicatorView = [[UIView alloc]init];
+    self.indicatorView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.indicatorView.backgroundColor = [UIColor clearColor];
 
-    return self.topImageView;
+    return self.indicatorView;
+}
+
+-(UIImageView *)imageView
+{
+    if (_imageView) {
+        return _imageView;
+    }
+    self.imageView = [[UIImageView alloc]init];
+    self.imageView.translatesAutoresizingMaskIntoConstraints = NO ;
+    self.imageView.animationDuration = 1;
+    self.imageView.animationRepeatCount = 0;
+
+    return self.imageView;
 }
 
 -(UILabel *)messageLabel
@@ -208,21 +269,15 @@
     self.refreshButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.refreshButton.titleLabel.font = [UIFont systemFontOfSize:18];
 
+    self.refreshButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.refreshButton.layer.borderWidth = 0.5;
     [self.refreshButton addTarget:self action:@selector(refreshButtonClick) forControlEvents:UIControlEventTouchUpInside];
 
     return self.refreshButton;
 }
 
--(void)hide
-{
-    [self dispatchMainQueue:^{
-        if (self.superview) {
-            [self removeFromSuperview];
-        }
-    }];
 
-}
-
+#pragma mark  --  updateConstraints 
 
 -(void)updateConstraints
 {
@@ -231,79 +286,64 @@
 
     [self.refreshButton removeAllConstraints];
     [self.messageLabel removeConstraintWithAttribte:NSLayoutAttributeWidth];
-    [self.topImageView removeAllConstraints];
-    [self.activityView removeAllConstraints];
-    
+    [self.indicatorView removeAllConstraints];
+    [self.loadingView removeAllConstraints];
+    [self.imageView removeAllConstraints];
+
     // messageLabel.constraint
     [self addConstraintCenterXToView:self.messageLabel centerYToView:self.messageLabel];
     [self.messageLabel addConstraintWidth:250 height:0];
 
-    // activity.constraint
-    [self addConstraintCenterXToView:self.activityView centerYToView:nil];
-    [self addConstarintWithTopView:self.activityView toBottomView:self.messageLabel constarint:10];
-    [self.activityView addConstraintWidth:self.activityViewSize.width height:self.activityViewSize.height];
+    // indicatorView.constraint
+    [self addConstraintCenterXToView:self.indicatorView centerYToView:nil];
+    [self addConstarintWithTopView:self.indicatorView toBottomView:self.messageLabel constarint:10];
+    [self.indicatorView addConstraintWidth:self.indicatorViewSize.width height:self.indicatorViewSize.height];
 
-    // topImageView..constraint
-    [self addConstraintCenterXToView:self.topImageView centerYToView:nil];
-    [self addConstarintWithTopView:self.topImageView toBottomView:self.messageLabel constarint:10];
-    [self.topImageView addConstraintWidth:self.topImageViewSize.width height:self.topImageViewSize.height];
+    // imageView.constraint
+    [self.indicatorView addConstraintCenterXToView:self.imageView centerYToView:self.imageView];
+    [self.imageView addConstraintWidth:self.indicatorViewSize.width height:self.indicatorViewSize.height];
 
+    // loadingView.constraint
+    if (self.loadingView.superview) {
+        [self.indicatorView addConstraintCenterXToView:self.loadingView centerYToView:self.loadingView];
+        [self.loadingView addConstraintWidth:self.indicatorViewSize.width height:self.indicatorViewSize.height];
+
+    }
     // refreshButton..constraint
     [self addConstraintCenterXToView:self.refreshButton centerYToView:nil];
-    [self addConstarintWithTopView:self.messageLabel toBottomView:self.refreshButton constarint:0];
-    [self.refreshButton addConstraintWidth:250 height:40];
+    [self addConstarintWithTopView:self.messageLabel toBottomView:self.refreshButton constarint:10];
+    [self.refreshButton addConstraintWidth:100 height:35];
 
 //    NSLog(@"self.constraint.count %lu ",self.constraints.count);
 
-     [super updateConstraints];
+    [super updateConstraints];
 }
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
+
 }
 
--(void)updateActivityHidden:(BOOL)isActivityHidden
-        refreshButtonHidden:(BOOL)isRefreshButtonHidden
-          isCustomAnimation:(BOOL)isCustomAnimation
+
+#pragma mark  --  Other method
+
+-(void)isShowRefreshButton:(BOOL)isShowRefreshButton
 {
-    isActivityHidden ? [self actiVityStopAnimating] :[self activityStartAnimating] ;
-    isCustomAnimation ? [self topImageViewStartAnimating]:[self topImageViewStopAnimating];
+    if (isShowRefreshButton) {
 
-    self.activityView.hidden = isActivityHidden;
-    self.refreshButton.hidden = isRefreshButtonHidden;
+        self.refreshButton.hidden = NO;
+    } else {
+        self.refreshButton.hidden = YES;
+    }
+    
 }
-
--(void)topImageViewStartAnimating
-{
-    [self.topImageView startAnimating];
-}
-
--(void)topImageViewStopAnimating
-{
-    self.topImageView.animationImages = nil;
-}
-
--(void)actiVityStopAnimating
-{
-    self.activityView.hidden = YES;
-    [self.activityView stopAnimating];
-
-    self.topImageView.hidden = NO;
-}
-
--(void)activityStartAnimating
-{
-    self.activityView.hidden = NO;
-    [self.activityView startAnimating];
-
-    self.topImageView.hidden = YES;
-}
-
 
 // When JHUDLoadingTypeFailure, there will be a "refresh" button, and the method.
 -(void)refreshButtonClick
 {
+    [self.loadingView removeSubLayer];
+
     if (self.JHUDReloadButtonClickedBlock) {
         self.JHUDReloadButtonClickedBlock();
     }
@@ -319,8 +359,21 @@
 
 @end
 
+#pragma mark - UIView (MainQueue)
 
- 
+@implementation UIView (MainQueue)
+
+-(void)dispatchMainQueue:(dispatch_block_t)block
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        block();
+    });
+}
+
+@end
+
+
+#pragma mark - JHUDAutoLayout Class
 
 @implementation UIView (JHUDAutoLayout)
 
@@ -392,12 +445,12 @@
     return nil;
 }
 
-- (NSLayoutConstraint *)addConstarintWithTopView:(UIView *)topView
+- (NSLayoutConstraint *)addConstarintWithTopView:(UIView *)indicatorView
                                     toBottomView:(UIView *)bottomView
                                       constarint:(CGFloat)constarint
 {
     NSLayoutConstraint *topButtomConstraint =[NSLayoutConstraint
-                                              constraintWithItem:topView
+                                              constraintWithItem:indicatorView
                                               attribute:NSLayoutAttributeBottom
                                               relatedBy:NSLayoutRelationEqual
                                               toItem:bottomView
@@ -422,6 +475,210 @@
 {
     [self removeConstraints:self.constraints];
 }
+
+
+@end
+
+
+#pragma mark -  JHUDLoadingAnimationView Class
+
+#define JHUDDefaultBackGroundColor [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.2]
+#define JHUDForegroundColor [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.6]
+
+@interface JHUDLoadingAnimationView ()
+
+@property (nonatomic,strong) CAReplicatorLayer * replicatorLayer ;
+
+@property (nonatomic,strong) CALayer * mylayer;
+
+@property (nonatomic,strong) CABasicAnimation  * basicAnimation;
+
+@property (nonatomic) JHUDAnimationType type ;
+
+@end
+
+
+@implementation JHUDLoadingAnimationView
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+
+        self.defaultBackGroundColor = JHUDDefaultBackGroundColor;
+        self.foregroundColor = JHUDForegroundColor;
+        self.count = 10;
+    }
+    return self;
+}
+
+-(CAReplicatorLayer *)replicatorLayer
+{
+    if (_replicatorLayer) {
+        return _replicatorLayer;
+    }
+    self.replicatorLayer = [CAReplicatorLayer layer];
+    self.replicatorLayer.cornerRadius = 10.0;
+
+    return self.replicatorLayer;
+}
+
+-(CALayer *)mylayer
+{
+    if (_mylayer) {
+        return _mylayer;
+    }
+    self.mylayer = [CALayer layer];
+    self.mylayer.masksToBounds = YES;
+    return self.mylayer;
+}
+
+-(CABasicAnimation *)basicAnimation
+{
+    if (_basicAnimation) {
+        return _basicAnimation;
+    }
+    self.basicAnimation = [CABasicAnimation animation];
+    self.basicAnimation.repeatCount = MAXFLOAT;
+    self.basicAnimation.removedOnCompletion = NO;
+    self.basicAnimation.fillMode = kCAFillModeForwards;
+
+    return self.basicAnimation;
+}
+
+-(void)setDefaultBackGroundColor:(UIColor *)defaultBackGroundColor
+{
+    _defaultBackGroundColor = defaultBackGroundColor;
+
+    self.replicatorLayer.backgroundColor = defaultBackGroundColor.CGColor;
+
+}
+
+-(void)setForegroundColor:(UIColor *)foregroundColor
+{
+    _foregroundColor = foregroundColor;
+
+    self.mylayer.backgroundColor = foregroundColor.CGColor;
+
+}
+
+#pragma mark - ShowAnimation method
+
+-(void)showAnimationAtView:(UIView *)view animationType:(JHUDAnimationType)animationType
+{
+
+    [self dispatchMainQueue:^{
+        [self removeSubLayer];
+    }];
+
+    self.type = animationType;
+
+    switch (animationType) {
+        case JHUDAnimationTypeCircle:
+
+            self.count = 10;
+            [self configCircle];
+            break;
+        case JHUDAnimationTypeCircleJoin:
+
+            self.count = 100;
+            [self configCircle];
+            break;
+        case JHUDAnimationTypeDot:
+
+            self.count = 3;
+            [self configDot];
+            break;
+        default:
+            break;
+    }
+
+    [self dispatchMainQueue:^{
+         [self addSubLayer];
+    }];
+
+}
+
+
+-(void)configCircle
+{
+    CGFloat width = 10;
+
+    self.mylayer.frame = CGRectMake(0, 0, width, width);
+    self.mylayer.cornerRadius = width / 2;
+    self.mylayer.transform = CATransform3DMakeScale(0.01, 0.01, 0.01);
+
+    self.replicatorLayer.instanceCount = self.count;
+
+    CGFloat angle = 2 * M_PI / self.count;
+    self.replicatorLayer.instanceTransform = CATransform3DMakeRotation(angle, 0, 0, 1);
+    self.replicatorLayer.instanceDelay = 1.0 / self.count;
+
+    self.basicAnimation.keyPath = @"transform.scale";
+    self.basicAnimation.duration = 1;
+    self.basicAnimation.fromValue = @1;
+    self.basicAnimation.toValue = @0.1;
+
+}
+
+
+-(void)configDot
+{
+    CGFloat width = 15 ;
+
+    self.mylayer.frame = CGRectMake(0, 0, width, width);
+    self.mylayer.transform = CATransform3DMakeScale(0, 0, 0);
+    self.mylayer.cornerRadius = width / 2;
+    self.replicatorLayer.instanceCount = self.count;
+
+    self.replicatorLayer.instanceTransform = CATransform3DMakeTranslation(100/3, 0, 0);
+    self.replicatorLayer.instanceDelay = 0.8 / self.count;
+
+    self.basicAnimation.keyPath = @"transform.scale";
+    self.basicAnimation.duration = 0.8;
+    self.basicAnimation.fromValue = @1;
+    self.basicAnimation.toValue = @0;
+
+}
+
+-(void)removeSubLayer
+{
+    [self.replicatorLayer removeFromSuperlayer];
+    [self.mylayer removeFromSuperlayer];
+    [self.mylayer removeAnimationForKey:@"JHUD"];
+
+}
+
+-(void)addSubLayer
+{
+    [self.layer addSublayer:self.replicatorLayer];
+    [self.replicatorLayer addSublayer:self.mylayer];
+    [self.mylayer addAnimation:self.basicAnimation forKey:@"JHUD"];
+
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+
+    self.replicatorLayer.frame = self.bounds;
+    self.replicatorLayer.position = self.center;
+
+    switch (self.type) {
+        case JHUDAnimationTypeCircle:
+        case JHUDAnimationTypeCircleJoin:
+             self.mylayer.position = CGPointMake(50,20);
+            break;
+
+        case JHUDAnimationTypeDot:
+            self.mylayer.position = CGPointMake(15, 50);
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 
 @end

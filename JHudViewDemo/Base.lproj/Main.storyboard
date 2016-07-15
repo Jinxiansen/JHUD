@@ -3,13 +3,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--JHUD-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -18,68 +17,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gO6-pY-0CP">
-                                <rect key="frame" x="66" y="240" width="188" height="88"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="188" id="ezR-yS-7ac"/>
-                                    <constraint firstAttribute="height" constant="88" id="n8B-gn-uwr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Hello,world !">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1hL-O3-CTk">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="HDU-az-8FG"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="vSD-Jf-iMh"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gO6-pY-0CP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0Tl-BJ-sxd"/>
-                            <constraint firstItem="gO6-pY-0CP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xK7-za-ldA"/>
+                            <constraint firstItem="1hL-O3-CTk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="2Ci-zM-HIp"/>
+                            <constraint firstItem="1hL-O3-CTk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6uB-t0-Q73"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1hL-O3-CTk" secondAttribute="bottom" id="wc3-Gm-LDl"/>
+                            <constraint firstAttribute="trailing" secondItem="1hL-O3-CTk" secondAttribute="trailing" id="yDM-x2-LLI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rkb-QV-WTk">
-                        <rightBarButtonItems>
-                            <barButtonItem style="done" id="R4s-jP-8jP">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xxv-xV-l4L">
-                                    <rect key="frame" x="248" y="8" width="56" height="27"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.76658099643789746" green="0.76830859244399441" blue="0.79467147435897434" alpha="0.094396551724137925" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="27" id="aBt-PE-aP7"/>
-                                        <constraint firstAttribute="width" constant="56" id="uar-d2-72c"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <state key="normal" title="hide">
-                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="hideButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mDz-o8-GET"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem style="done" id="YTT-YO-UDv">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="V76-9U-Yng">
-                                    <rect key="frame" x="145" y="7" width="95" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.76658099643789746" green="0.76830859244399441" blue="0.79467147435897434" alpha="0.094396551724137925" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="95" id="7di-7s-v8j"/>
-                                        <constraint firstAttribute="height" constant="30" id="GTB-5f-15T"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <state key="normal" title="changeType">
-                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="ButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Itv-Kd-CJ1"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="JHUD" id="rkb-QV-WTk"/>
+                    <connections>
+                        <outlet property="tableView" destination="1hL-O3-CTk" id="eJ8-CA-MsW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="651.73333333333335" y="217.73333333333332"/>
+            <point key="canvasLocation" x="651" y="217"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vnU-c4-hXb">
