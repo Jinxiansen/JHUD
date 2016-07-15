@@ -13,6 +13,7 @@
 // 格式 0xff3737
 #define JHUDRGBHexAlpha(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
 
+#define JHUDRGBA(r,g,b,a)            [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
 @interface DetailViewController ()
 
@@ -83,16 +84,16 @@
 -(void)loadingCircleJoinAnimation
 {
     self.hudView.messageLabel.text = @"hello ,this is a circleJoin animation";
-    self.hudView.indicatorForegroundColor = [UIColor colorWithRed:1 green:1 blue:152/255 alpha:1];
-    self.hudView.indicatorBackGroundColor = [UIColor colorWithRed:50/255 green:180/255 blue:218/255 alpha:1];
+    self.hudView.indicatorForegroundColor = JHUDRGBA(60, 139, 246, .5);
+    self.hudView.indicatorBackGroundColor = JHUDRGBA(185, 186, 200, 1);
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircleJoin];
 }
 
 -(void)loadingDotAnimation
 {
     self.hudView.messageLabel.text = @"hello ,this is a dot animation";
-    self.hudView.indicatorBackGroundColor = [UIColor colorWithHue:.1 saturation:.1 brightness:.1 alpha:.2];
-    self.hudView.indicatorForegroundColor = JHUDRGBHexAlpha(0x189cfb, 1);
+    self.hudView.indicatorBackGroundColor = [UIColor whiteColor];
+    self.hudView.indicatorForegroundColor = [UIColor orangeColor];
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeDot];
 }
 
