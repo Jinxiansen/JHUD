@@ -55,54 +55,12 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 
 
 
-@interface UIView (JHUDAutoLayout)
-
-- (void)addConstraintWidth:(CGFloat)width
-                    height:(CGFloat)height;
-
-- (void)addConstraintCenterXToView:(UIView *)xView
-                     centerYToView:(UIView *)yView;
-
-- (NSLayoutConstraint *)addConstraintCenterYToView:(UIView *)yView
-                                          constant:(CGFloat)constant;
-
-- (NSLayoutConstraint *)addConstarintWithTopView:(UIView *)topView
-                                    toBottomView:(UIView *)bottomView
-                                      constarint:(CGFloat)constarint;
-
-- (void)removeConstraintWithAttribte:(NSLayoutAttribute)attribute;
-
-- (void)removeAllConstraints;
-
-@end
-
 @interface UIView (MainQueue)
 
 -(void)dispatchMainQueue:(dispatch_block_t)block;
 
 @end
 
-
-
-typedef NS_ENUM(NSUInteger, JHUDAnimationType) {
-    JHUDAnimationTypeCircle = 0,
-    JHUDAnimationTypeCircleJoin,
-    JHUDAnimationTypeDot,
-};
-
-@interface JHUDLoadingAnimationView : UIView
-
-@property (nonatomic,assign) NSInteger  count;
-
-@property (nonatomic) UIColor  *defaultBackGroundColor;//
-
-@property (nonatomic) UIColor  *foregroundColor;
-
-- (void)showAnimationAtView:(UIView *)view animationType:(JHUDAnimationType)animationType;
-
--(void)removeSubLayer;
-
-@end
 
 
 

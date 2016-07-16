@@ -35,7 +35,7 @@
     __weak typeof(self)  _self = self;
     [self.hudView setJHUDReloadButtonClickedBlock:^() {
         NSLog(@"refreshButton");
-        [_self loadingCircleJoinAnimation];
+        [_self loadingCustomAnimations];
     }];
 
 
@@ -57,7 +57,7 @@
         [self hide];
     }else
     {
-        [self loadingFailure2];
+        [self loadingFailure];
     }
     
 }
