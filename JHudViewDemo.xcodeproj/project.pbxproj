@@ -13,9 +13,9 @@
 		41BDF3491D3399B90013BA46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BDF3471D3399B90013BA46 /* Main.storyboard */; };
 		41BDF34B1D3399B90013BA46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41BDF34A1D3399B90013BA46 /* Assets.xcassets */; };
 		41BDF34E1D3399B90013BA46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BDF34C1D3399B90013BA46 /* LaunchScreen.storyboard */; };
-		41BDF35B1D339A280013BA46 /* JHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BDF35A1D339A280013BA46 /* JHUD.m */; };
-		41E495211D3A2D900012263A /* UIView+JHUDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E495201D3A2D900012263A /* UIView+JHUDAutoLayout.m */; };
-		41E495241D3A2E5C0012263A /* JHUDLoadingAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E495231D3A2E5C0012263A /* JHUDLoadingAnimationView.m */; };
+		41E4952C1D3A4E140012263A /* JHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E495271D3A4E140012263A /* JHUD.m */; };
+		41E4952D1D3A4E140012263A /* JHUDLoadingAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E495291D3A4E140012263A /* JHUDLoadingAnimationView.m */; };
+		41E4952E1D3A4E140012263A /* UIView+JHUDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E4952B1D3A4E140012263A /* UIView+JHUDAutoLayout.m */; };
 		41FF47CC1D38B856009468A7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FF47CB1D38B856009468A7 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -30,12 +30,12 @@
 		41BDF34A1D3399B90013BA46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41BDF34D1D3399B90013BA46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41BDF34F1D3399B90013BA46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		41BDF3591D339A280013BA46 /* JHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHUD.h; sourceTree = "<group>"; };
-		41BDF35A1D339A280013BA46 /* JHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHUD.m; sourceTree = "<group>"; };
-		41E4951F1D3A2D900012263A /* UIView+JHUDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JHUDAutoLayout.h"; sourceTree = "<group>"; };
-		41E495201D3A2D900012263A /* UIView+JHUDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JHUDAutoLayout.m"; sourceTree = "<group>"; };
-		41E495221D3A2E5C0012263A /* JHUDLoadingAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHUDLoadingAnimationView.h; sourceTree = "<group>"; };
-		41E495231D3A2E5C0012263A /* JHUDLoadingAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHUDLoadingAnimationView.m; sourceTree = "<group>"; };
+		41E495261D3A4E140012263A /* JHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHUD.h; sourceTree = "<group>"; };
+		41E495271D3A4E140012263A /* JHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHUD.m; sourceTree = "<group>"; };
+		41E495281D3A4E140012263A /* JHUDLoadingAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHUDLoadingAnimationView.h; sourceTree = "<group>"; };
+		41E495291D3A4E140012263A /* JHUDLoadingAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHUDLoadingAnimationView.m; sourceTree = "<group>"; };
+		41E4952A1D3A4E140012263A /* UIView+JHUDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JHUDAutoLayout.h"; sourceTree = "<group>"; };
+		41E4952B1D3A4E140012263A /* UIView+JHUDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JHUDAutoLayout.m"; sourceTree = "<group>"; };
 		41FF47CA1D38B856009468A7 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		41FF47CB1D38B856009468A7 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,7 +70,7 @@
 		41BDF33D1D3399B90013BA46 /* JHudViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				41BDF3581D339A280013BA46 /* HudView */,
+				41E495251D3A4E140012263A /* JHUD */,
 				41BDF3411D3399B90013BA46 /* AppDelegate.h */,
 				41BDF3421D3399B90013BA46 /* AppDelegate.m */,
 				41BDF3441D3399B90013BA46 /* ViewController.h */,
@@ -94,17 +94,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		41BDF3581D339A280013BA46 /* HudView */ = {
+		41E495251D3A4E140012263A /* JHUD */ = {
 			isa = PBXGroup;
 			children = (
-				41BDF3591D339A280013BA46 /* JHUD.h */,
-				41BDF35A1D339A280013BA46 /* JHUD.m */,
-				41E4951F1D3A2D900012263A /* UIView+JHUDAutoLayout.h */,
-				41E495201D3A2D900012263A /* UIView+JHUDAutoLayout.m */,
-				41E495221D3A2E5C0012263A /* JHUDLoadingAnimationView.h */,
-				41E495231D3A2E5C0012263A /* JHUDLoadingAnimationView.m */,
+				41E495261D3A4E140012263A /* JHUD.h */,
+				41E495271D3A4E140012263A /* JHUD.m */,
+				41E495281D3A4E140012263A /* JHUDLoadingAnimationView.h */,
+				41E495291D3A4E140012263A /* JHUDLoadingAnimationView.m */,
+				41E4952A1D3A4E140012263A /* UIView+JHUDAutoLayout.h */,
+				41E4952B1D3A4E140012263A /* UIView+JHUDAutoLayout.m */,
 			);
-			path = HudView;
+			path = JHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,13 +177,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41E495211D3A2D900012263A /* UIView+JHUDAutoLayout.m in Sources */,
+				41E4952C1D3A4E140012263A /* JHUD.m in Sources */,
 				41FF47CC1D38B856009468A7 /* DetailViewController.m in Sources */,
-				41E495241D3A2E5C0012263A /* JHUDLoadingAnimationView.m in Sources */,
 				41BDF3461D3399B90013BA46 /* ViewController.m in Sources */,
 				41BDF3431D3399B90013BA46 /* AppDelegate.m in Sources */,
+				41E4952E1D3A4E140012263A /* UIView+JHUDAutoLayout.m in Sources */,
 				41BDF3401D3399B90013BA46 /* main.m in Sources */,
-				41BDF35B1D339A280013BA46 /* JHUD.m in Sources */,
+				41E4952D1D3A4E140012263A /* JHUDLoadingAnimationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

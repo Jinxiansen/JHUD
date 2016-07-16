@@ -51,6 +51,21 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 
 -(void)hide;
 
+
+#pragma mark - Class method
+
+/**
+ *  This method of JHUDLoadingType default is JHUDLoadingTypeCircle.
+ *
+ *  @param view    The parent view JHUD.
+ *  @param message The label display content.
+ */
++(void)showAtView:(UIView *)view message:(NSString *)message;
+
++(void)showAtView:(UIView *)view message:(NSString *)message hudType:(JHUDLoadingType)hudType;
+
++(void)hide;
+
 @end
 
 

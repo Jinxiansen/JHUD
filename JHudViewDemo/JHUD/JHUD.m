@@ -9,10 +9,16 @@
 #import "JHUD.h"
 #import "JHUDLoadingAnimationView.h"
 #import "UIView+JHUDAutoLayout.h"
+#import <objc/runtime.h>
 
 #define KLastWindow [[UIApplication sharedApplication].windows lastObject]
 
+#define JOBJCSetObject(object,value)  objc_setAssociatedObject(object,@"JHUDOBJC" , value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+
+#define JOBJCGetObject(object) objc_getAssociatedObject(object, @"JHUDOBJC")
+
 //#define JHUDMainThreadAssert() NSAssert([NSThread isMainThread], @"JHUD needs to be accessed on the main thread.");
+
 
 #pragma mark -  JHUD Class
 
@@ -75,6 +81,40 @@
         view ? [view addSubview:self]:[KLastWindow addSubview:self];
         [self.superview bringSubviewToFront:self];
     }];
+}
+
++(void)showAtView:(UIView *)view message:(NSString *)message
+{
+    [self showAtView:view message:message hudType:JHUDLoadingTypeCircle];
+}
+
++(void)showAtView:(UIView *)view message:(NSString *)message hudType:(JHUDLoadingType)hudType
+{
+    JHUD * hud = [[self alloc]initWithFrame:view.bounds];
+    hud.messageLabel.text = message;
+
+    JOBJCSetObject(self, hud);
+
+    [hud showAtView:view hudType:hudType];
+}
+
+//+(void)hideForView:(UIView *)view
+//{
+//    NSEnumerator *subviewsEnum = [view.subviews reverseObjectEnumerator];
+//    for (UIView *subview in subviewsEnum) {
+//        if ([subview isKindOfClass:self]) {
+//            JHUD * hud = (JHUD *)subview;
+//            [hud hide];
+//        }
+//    }
+//}
+
++(void)hide
+{
+    JHUD * hud = JOBJCGetObject(self);
+    if (hud) {
+        [hud hide];
+    }
 }
 
 -(void)hide
@@ -171,7 +211,6 @@
         case JHUDLoadingTypeCustomAnimations:
             break;
         case JHUDLoadingTypeFailure:
-            [self remind];
             break;
 
         default:
@@ -179,17 +218,6 @@
     }
     
 }
-
--(void)remind
-{
-    if (!self.messageLabel.text.length) {
-        NSLog(@"Please set the messageLabel text.(JHUD)");
-    }
-    if (!self.refreshButton.titleLabel.text.length) {
-        NSLog(@"Please set the refreshButton.titleLabel text.(JHUD)");
-    }
-}
-
 
 #pragma mark  --  Lazy method
 
@@ -239,6 +267,7 @@
     self.messageLabel = [UILabel new];
     self.messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.messageLabel.textAlignment = NSTextAlignmentCenter ;
+    self.messageLabel.text = @"Please wait ...";
     self.messageLabel.textColor = [UIColor lightGrayColor];
     self.messageLabel.font = [UIFont systemFontOfSize:16];
     self.messageLabel.backgroundColor = [UIColor clearColor];
@@ -259,7 +288,7 @@
     [self.refreshButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     self.refreshButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.refreshButton.titleLabel.font = [UIFont systemFontOfSize:18];
-    
+    [self.refreshButton setTitle:@"Refresh" forState:UIControlStateNormal];
     self.refreshButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.refreshButton.layer.borderWidth = 0.5;
     [self.refreshButton addTarget:self action:@selector(refreshButtonClick) forControlEvents:UIControlEventTouchUpInside];

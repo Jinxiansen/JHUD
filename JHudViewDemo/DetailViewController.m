@@ -59,7 +59,7 @@
     {
         [self loadingFailure];
     }
-    
+
 }
 
 -(UIButton *)rightButton
@@ -75,7 +75,7 @@
 
 -(void)loadingCircleAnimation
 {
-    self.hudView.messageLabel.text = @"hello ,this is a circle animation";
+    self.hudView.messageLabel.text = @"Hello ,this is a circle animation";
     self.hudView.indicatorBackGroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.1];
     self.hudView.indicatorForegroundColor = [UIColor lightGrayColor];
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircle];
@@ -83,7 +83,7 @@
 
 -(void)loadingCircleJoinAnimation
 {
-    self.hudView.messageLabel.text = @"hello ,this is a circleJoin animation";
+    self.hudView.messageLabel.text = @"Hello ,this is a circleJoin animation";
     self.hudView.indicatorForegroundColor = JHUDRGBA(60, 139, 246, .5);
     self.hudView.indicatorBackGroundColor = JHUDRGBA(185, 186, 200, 0.3);
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircleJoin];
@@ -91,7 +91,7 @@
 
 -(void)loadingDotAnimation
 {
-    self.hudView.messageLabel.text = @"hello ,this is a dot animation";
+    self.hudView.messageLabel.text = @"Hello ,this is a dot animation";
     self.hudView.indicatorBackGroundColor = [UIColor whiteColor];
     self.hudView.indicatorForegroundColor = [UIColor orangeColor];
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeDot];
