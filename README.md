@@ -2,7 +2,7 @@
 
 ####`JHUD` is a full screen of the HUD when loading the data (Objective-C) .
 
-#### ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [中文说明](README.zh.md)
+#### ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [中文介绍](README.zh.md)
  
 ##screenshots
 
@@ -41,7 +41,7 @@ hudView.messageLabel.text = @"hello ,this is a circle animation";
 
 ```
 
-or
+Class method 
 
 ```
 [JHUD showAtView:self.view message:@"Hello, this is a message"];
