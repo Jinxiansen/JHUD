@@ -1,5 +1,10 @@
 # JHUD
 
+[![Version](https://img.shields.io/cocoapods/v/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
+[![License](https://img.shields.io/cocoapods/l/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
+[![Platform](https://img.shields.io/cocoapods/p/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
+[![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
+
 ####`JHUD` is a full screen of the HUD when loading the data (Objective-C) .
 
 #### ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [中文介绍](README.zh.md)
@@ -38,7 +43,6 @@ hudView.messageLabel.text = @"hello ,this is a circle animation";
 
 //hide 
 [hudView hide];
-
 ```
 
 Class method 
@@ -47,7 +51,6 @@ Class method
 [JHUD showAtView:self.view message:@"Hello, this is a message"];
 
 [JHUD hide];
-
 ```
 
 For more examples, including how to use JHUD , take a look at the bundled demo project. API documentation is provided in the header file (JHUD.h).
