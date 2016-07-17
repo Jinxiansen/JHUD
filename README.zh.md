@@ -46,4 +46,4 @@ hudView.messageLabel.text = @"hello ,this is a circle animation";
 
 ##许可
 
-JHUD 使用 MIT 许可证，详情可见 LICENSE 文件。
+JHUD 使用 MIT 许可证，详情可见 [LICENSE](LICENSE) 文件。
