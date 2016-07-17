@@ -29,17 +29,17 @@ You will need the latest developer tools in order to build `JHUD`. Old Xcode ver
 
 CocoaPods is the recommended way to add JHUD to your project.
 
- 1. Add a pod entry for JHUD to your Podfile.
-
+Add a pod entry for JHUD to your Podfile.
+ 
 ```
 pod 'JHUD'
 ```
- 2. Second, install JHUD into your project:
-
+Second, install JHUD into your project:
+ 
 ```
 pod install
 ```
- 3. Include JHUD wherever you need it with `#import "JHUD.h"`.
+Include JHUD wherever you need it with `#import "JHUD.h"`.
 
 ## Manually
 
