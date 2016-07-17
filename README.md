@@ -24,7 +24,24 @@
 `JHUD` works on "Xcode 7.3 , iOS 6+  and requires ARC to build. 
 You will need the latest developer tools in order to build `JHUD`. Old Xcode versions might work, but compatibility will not be explicitly maintained.
 
-### Manually
+
+##CocoaPods
+
+CocoaPods is the recommended way to add JHUD to your project.
+
+ 1. Add a pod entry for JHUD to your Podfile.
+
+```
+pod 'JHUD'
+```
+ 2. Second, install JHUD into your project:
+
+```
+pod install
+```
+ 3. Include JHUD wherever you need it with `#import "JHUD.h"`.
+
+## Manually
 
 1. Download the latest code version .
 2. Open your project in Xcode,drag the `JHUD` folder into your project.  Make sure to select Copy items when asked if you extracted the code archive outside of your project.
