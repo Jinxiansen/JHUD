@@ -8,7 +8,7 @@
 ####`JHUD` is a full screen of the HUD when loading the data (Objective-C) .
 
 #### ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: 
-####[中文介绍](README.zh.md)
+####[中文说明](README.zh.md)
 ######[简书介绍](http://www.jianshu.com/p/fc07f027680c)
  
 ##screenshots
