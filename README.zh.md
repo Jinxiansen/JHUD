@@ -9,7 +9,7 @@
 
 推荐使用 CocoaPods 安装。
 
-1. 在 Podfile 中添加 `pod 'YYKit'`。
+1. 在 Podfile 中添加 `pod 'JHUD'`。
 2. 执行 `pod install` 或 `pod update`。
 3. 导入 `"JHUD.h"`。
 
