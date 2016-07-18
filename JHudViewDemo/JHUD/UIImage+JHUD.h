@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage (JHUDGifImage)
+@interface UIImage (JHUD)
 
 + (UIImage *)jHUDImageWithSmallGIFData:(NSData *)data scale:(CGFloat)scale;
 

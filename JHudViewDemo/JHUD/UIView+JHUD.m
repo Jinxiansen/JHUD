@@ -9,7 +9,7 @@
 #import "UIView+JHUD.h"
 
 
-@implementation UIView (JHUDAutoLayout)
+@implementation UIView (JHUD)
 
 - (void)addConstraintWidth:(CGFloat)width height:(CGFloat)height
 {

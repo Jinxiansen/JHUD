@@ -9,7 +9,7 @@
 #import "UIImage+JHUD.h"
 #import <ImageIO/ImageIO.h>
 
-@implementation UIImage (JHUDGifImage)
+@implementation UIImage (JHUD)
 
 // See YYWebImage for details.
 + (UIImage *)jHUDImageWithSmallGIFData:(NSData *)data scale:(CGFloat)scale {
