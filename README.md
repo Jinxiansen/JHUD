@@ -13,12 +13,13 @@
  
 ##screenshots
 
- ![](gif/01.gif) 
+ ![](gif/1.gif) 
  ![](gif/2.gif)
- ![](gif/03.gif)
- ![](gif/04.gif)
- ![](gif/05.gif)
- ![](gif/06.gif)
+ ![](gif/3.gif)
+ ![](gif/4.gif)
+ ![](gif/5.gif)
+ ![](gif/6.gif)
+ ![](gif/7.gif)
 
 
 ## Requirements

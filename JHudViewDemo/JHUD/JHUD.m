@@ -7,9 +7,10 @@
 //
 
 #import "JHUD.h"
-#import "JHUDLoadingAnimationView.h"
-#import "UIView+JHUDAutoLayout.h"
+#import "JHUDAnimationView.h"
+#import "UIView+JHUD.h"
 #import <objc/runtime.h>
+#import "UIImage+JHUD.h"
 
 #define KLastWindow [[UIApplication sharedApplication].windows lastObject]
 
@@ -26,7 +27,7 @@
 
 @property (nonatomic) JHUDLoadingType hudType;
 
-@property (nonatomic,strong) JHUDLoadingAnimationView  *loadingView;
+@property (nonatomic,strong) JHUDAnimationView  *loadingView;
 
 @property (nonatomic,strong) UIImageView  *imageView;
 
@@ -38,10 +39,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
         [self configureBaseInfo];
         [self configureSubViews];
-        
     }
     return self;
 }
@@ -128,6 +127,13 @@
     
 }
 
+-(void)setGifImageData:(NSData *)gifImageData
+{
+    _gifImageData = gifImageData;
+
+    UIImage * image = [UIImage jHUDImageWithSmallGIFData:gifImageData scale:1];
+    self.imageView.image = image;
+}
 
 -(void)setindicatorViewSize:(CGSize)indicatorViewSize
 {
@@ -182,7 +188,7 @@
     [self isShowRefreshButton:YES]:
     [self isShowRefreshButton:NO];
     
-    if ((hudType == JHUDLoadingTypeCustomAnimations) | (hudType == JHUDLoadingTypeFailure) ) {
+    if ( hudType >2 ) {
         self.imageView.hidden = NO;
         [self.loadingView removeFromSuperview];
         
@@ -210,6 +216,8 @@
             break;
         case JHUDLoadingTypeCustomAnimations:
             break;
+        case JHUDLoadingTypeGifImage:
+            break;
         case JHUDLoadingTypeFailure:
             break;
 
@@ -221,12 +229,12 @@
 
 #pragma mark  --  Lazy method
 
--(JHUDLoadingAnimationView *)loadingView
+-(JHUDAnimationView *)loadingView
 {
     if (_loadingView) {
         return _loadingView;
     }
-    self.loadingView = [[JHUDLoadingAnimationView alloc]init];
+    self.loadingView = [[JHUDAnimationView alloc]init];
     self.loadingView.translatesAutoresizingMaskIntoConstraints = NO;
     self.loadingView.backgroundColor = [UIColor clearColor];
     
@@ -357,7 +365,7 @@
     
 }
 
-// When JHUDLoadingTypeFailure, there will be a "refresh" button, and the method.
+// When JHUDLoadingType >2, there will be a "refresh" button, and the method.
 -(void)refreshButtonClick
 {
     [self.loadingView removeSubLayer];

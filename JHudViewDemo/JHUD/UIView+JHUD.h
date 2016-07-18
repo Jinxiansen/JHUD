@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (JHUDAutoLayout)
+@interface UIView (JHUD)
 
 - (void)addConstraintWidth:(CGFloat)width
                     height:(CGFloat)height;

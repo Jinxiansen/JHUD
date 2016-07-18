@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 
+// 格式 0xff3737
+#define JHUDRGBHexAlpha(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
+
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +21,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    UINavigationBar *appearance =[UINavigationBar appearance];
+    appearance.barStyle = UIBarStyleBlack;
+    [appearance setBackgroundImage:[UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    appearance.shadowImage = [UIImage new];
+    appearance.tintColor = [UIColor whiteColor];
+    appearance.barTintColor = JHUDRGBHexAlpha(0x189cfb, 1);
+    appearance.translucent = NO;
+    appearance.clipsToBounds = NO;
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=8.2) {
+        appearance.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:17 weight:UIFontWeightLight]};
+    }else
+    {
+        appearance.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    }
+
     return YES;
 }
 

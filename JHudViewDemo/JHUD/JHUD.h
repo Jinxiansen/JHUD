@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
-    JHUDLoadingTypeCircle = 0,
-    JHUDLoadingTypeCircleJoin,
-    JHUDLoadingTypeDot,
-    JHUDLoadingTypeCustomAnimations,
-    JHUDLoadingTypeFailure,
+    JHUDLoadingTypeCircle           = 0,
+    JHUDLoadingTypeCircleJoin       = 1,
+    JHUDLoadingTypeDot              = 2,
+    JHUDLoadingTypeCustomAnimations = 3,
+    JHUDLoadingTypeGifImage         = 4,
+    JHUDLoadingTypeFailure          = 5,
 };
 
 @interface JHUD : UIView
@@ -39,6 +40,11 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
  *  Only JHUDLoadingType is JHUDLoadingTypeCustomAnimations or JHUDLoadingTypeFailure, indicatorViewSize values can be changed.
  */
 @property (nonatomic,assign) CGSize indicatorViewSize;
+
+/**
+ *  You need to read from the NSbundle GIF image and converted to NSData .
+ */
+@property (nonatomic) NSData  *gifImageData;
 
 /**
  *  Only when JHUDLoadingType is JHUDLoadingTypeCustomAnimations will only take effect .

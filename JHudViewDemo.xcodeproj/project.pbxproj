@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41A302AB1D3CBCCE005C800C /* UIImage+JHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A302AA1D3CBCCE005C800C /* UIImage+JHUD.m */; };
 		41BDF3401D3399B90013BA46 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BDF33F1D3399B90013BA46 /* main.m */; };
 		41BDF3431D3399B90013BA46 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BDF3421D3399B90013BA46 /* AppDelegate.m */; };
 		41BDF3461D3399B90013BA46 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BDF3451D3399B90013BA46 /* ViewController.m */; };
@@ -14,12 +15,14 @@
 		41BDF34B1D3399B90013BA46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41BDF34A1D3399B90013BA46 /* Assets.xcassets */; };
 		41BDF34E1D3399B90013BA46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BDF34C1D3399B90013BA46 /* LaunchScreen.storyboard */; };
 		41E4952C1D3A4E140012263A /* JHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E495271D3A4E140012263A /* JHUD.m */; };
-		41E4952D1D3A4E140012263A /* JHUDLoadingAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E495291D3A4E140012263A /* JHUDLoadingAnimationView.m */; };
-		41E4952E1D3A4E140012263A /* UIView+JHUDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E4952B1D3A4E140012263A /* UIView+JHUDAutoLayout.m */; };
+		41E4952D1D3A4E140012263A /* JHUDAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E495291D3A4E140012263A /* JHUDAnimationView.m */; };
+		41E4952E1D3A4E140012263A /* UIView+JHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E4952B1D3A4E140012263A /* UIView+JHUD.m */; };
 		41FF47CC1D38B856009468A7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FF47CB1D38B856009468A7 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41A302A91D3CBCCE005C800C /* UIImage+JHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JHUD.h"; sourceTree = "<group>"; };
+		41A302AA1D3CBCCE005C800C /* UIImage+JHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JHUD.m"; sourceTree = "<group>"; };
 		41BDF33B1D3399B90013BA46 /* JHudViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JHudViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BDF33F1D3399B90013BA46 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		41BDF3411D3399B90013BA46 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -32,10 +35,10 @@
 		41BDF34F1D3399B90013BA46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41E495261D3A4E140012263A /* JHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHUD.h; sourceTree = "<group>"; };
 		41E495271D3A4E140012263A /* JHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHUD.m; sourceTree = "<group>"; };
-		41E495281D3A4E140012263A /* JHUDLoadingAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHUDLoadingAnimationView.h; sourceTree = "<group>"; };
-		41E495291D3A4E140012263A /* JHUDLoadingAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHUDLoadingAnimationView.m; sourceTree = "<group>"; };
-		41E4952A1D3A4E140012263A /* UIView+JHUDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JHUDAutoLayout.h"; sourceTree = "<group>"; };
-		41E4952B1D3A4E140012263A /* UIView+JHUDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JHUDAutoLayout.m"; sourceTree = "<group>"; };
+		41E495281D3A4E140012263A /* JHUDAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHUDAnimationView.h; sourceTree = "<group>"; };
+		41E495291D3A4E140012263A /* JHUDAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHUDAnimationView.m; sourceTree = "<group>"; };
+		41E4952A1D3A4E140012263A /* UIView+JHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JHUD.h"; sourceTree = "<group>"; };
+		41E4952B1D3A4E140012263A /* UIView+JHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JHUD.m"; sourceTree = "<group>"; };
 		41FF47CA1D38B856009468A7 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		41FF47CB1D38B856009468A7 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,10 +102,12 @@
 			children = (
 				41E495261D3A4E140012263A /* JHUD.h */,
 				41E495271D3A4E140012263A /* JHUD.m */,
-				41E495281D3A4E140012263A /* JHUDLoadingAnimationView.h */,
-				41E495291D3A4E140012263A /* JHUDLoadingAnimationView.m */,
-				41E4952A1D3A4E140012263A /* UIView+JHUDAutoLayout.h */,
-				41E4952B1D3A4E140012263A /* UIView+JHUDAutoLayout.m */,
+				41E495281D3A4E140012263A /* JHUDAnimationView.h */,
+				41E495291D3A4E140012263A /* JHUDAnimationView.m */,
+				41E4952A1D3A4E140012263A /* UIView+JHUD.h */,
+				41E4952B1D3A4E140012263A /* UIView+JHUD.m */,
+				41A302A91D3CBCCE005C800C /* UIImage+JHUD.h */,
+				41A302AA1D3CBCCE005C800C /* UIImage+JHUD.m */,
 			);
 			path = JHUD;
 			sourceTree = "<group>";
@@ -178,12 +183,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				41E4952C1D3A4E140012263A /* JHUD.m in Sources */,
+				41A302AB1D3CBCCE005C800C /* UIImage+JHUD.m in Sources */,
 				41FF47CC1D38B856009468A7 /* DetailViewController.m in Sources */,
 				41BDF3461D3399B90013BA46 /* ViewController.m in Sources */,
 				41BDF3431D3399B90013BA46 /* AppDelegate.m in Sources */,
-				41E4952E1D3A4E140012263A /* UIView+JHUDAutoLayout.m in Sources */,
+				41E4952E1D3A4E140012263A /* UIView+JHUD.m in Sources */,
 				41BDF3401D3399B90013BA46 /* main.m in Sources */,
-				41E4952D1D3A4E140012263A /* JHUDLoadingAnimationView.m in Sources */,
+				41E4952D1D3A4E140012263A /* JHUDAnimationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

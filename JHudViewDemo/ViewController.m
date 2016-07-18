@@ -27,8 +27,10 @@
                    @"loadingCircleJoinAnimation",
                    @"loadingDotAnimation",
                    @"loadingCustomAnimations",
+                   @"loadingGifAnimations",
                    @"loadingFailure",
-                   @"loadingFailure2"
+                   @"loadingFailure2",
+                   @"classMethod",
                    ];
     
     [self.tableView reloadData];

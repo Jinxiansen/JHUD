@@ -13,9 +13,11 @@
 // 格式 0xff3737
 #define JHUDRGBHexAlpha(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
 
-#define JHUDRGBA(r,g,b,a)            [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define JHUDRGBA(r,g,b,a)     [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
 @interface DetailViewController ()
+
+@property (nonatomic,strong) UIButton *rightButton;
 
 @property (nonatomic) JHUD *hudView;
 
@@ -45,7 +47,7 @@
     [self performSelector:sel withObject:nil];
 #pragma clang diagnostic pop
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[self rightButton]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.rightButton];
 
 }
 
@@ -64,13 +66,18 @@
 
 -(UIButton *)rightButton
 {
-    UIButton * rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightButton.frame = CGRectMake(0, 0,45, 35);
-    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [rightButton setTitle:@"Hide" forState:UIControlStateNormal];
-    [rightButton setTitle:@"Show" forState:UIControlStateSelected];
-    [rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    return rightButton;
+    if (_rightButton) {
+        return _rightButton;
+    }
+    self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.rightButton.frame = CGRectMake(0, 0,45, 35);
+    [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.rightButton setTitle:@"Hide" forState:UIControlStateNormal];
+    [self.rightButton setTitle:@"Show" forState:UIControlStateSelected];
+    self.rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    [self.rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+
+    return self.rightButton;
 }
 
 -(void)loadingCircleAnimation
@@ -107,7 +114,7 @@
         [images addObject:image];
     }
 
-    self.hudView.indicatorViewSize = CGSizeMake(60, 60);
+    self.hudView.indicatorViewSize = CGSizeMake(80, 80);
     self.hudView.customAnimationImages = images;
     self.hudView.messageLabel.text = @"无人问我粥可温\n无人与我共黄昏";
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCustomAnimations];
@@ -116,6 +123,17 @@
     // http://preloaders.net/en/people_and_animals
     // https://convertio.co/zh/gif-png/
     // http://spiffygif.com
+}
+
+-(void)loadingGifAnimations
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"loadinggif3" ofType:@"gif"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+
+    self.hudView.gifImageData = data;
+    self.hudView.indicatorViewSize = CGSizeMake(110, 110); // Maybe you can try to use (100,250);😂
+    self.hudView.messageLabel.text = @"Hello ,this is a gif animation";
+    [self.hudView showAtView:self.view hudType:JHUDLoadingTypeGifImage];
 }
 
 
@@ -139,6 +157,19 @@
 
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
 }
+
+-(void)classMethod
+{
+    self.rightButton.hidden = YES;
+
+    [JHUD showAtView:self.view message:@"I'm a class method."];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [JHUD hide];
+    });
+    
+}
+
 
 
 -(void)hide

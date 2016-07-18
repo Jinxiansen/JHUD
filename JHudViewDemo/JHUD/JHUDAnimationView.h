@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, JHUDAnimationType) {
     JHUDAnimationTypeDot,
 };
 
-@interface JHUDLoadingAnimationView : UIView
+@interface JHUDAnimationView : UIView
 
 @property (nonatomic,assign) NSInteger  count;
 

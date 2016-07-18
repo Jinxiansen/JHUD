@@ -28,8 +28,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1hL-O3-CTk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="2Ci-zM-HIp"/>
                             <constraint firstItem="1hL-O3-CTk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6uB-t0-Q73"/>
+                            <constraint firstItem="1hL-O3-CTk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ikP-Ax-1RI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1hL-O3-CTk" secondAttribute="bottom" id="wc3-Gm-LDl"/>
                             <constraint firstAttribute="trailing" secondItem="1hL-O3-CTk" secondAttribute="trailing" id="yDM-x2-LLI"/>
                         </constraints>

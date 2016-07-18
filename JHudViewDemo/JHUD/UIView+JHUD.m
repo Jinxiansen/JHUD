@@ -6,7 +6,7 @@
 //  Copyright © 2016年 晋先森. All rights reserved.
 //
 
-#import "UIView+JHUDAutoLayout.h"
+#import "UIView+JHUD.h"
 
 
 @implementation UIView (JHUDAutoLayout)

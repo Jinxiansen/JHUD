@@ -6,7 +6,7 @@
 //  Copyright © 2016年 晋先森. All rights reserved.
 //
 
-#import "JHUDLoadingAnimationView.h"
+#import "JHUDAnimationView.h"
 #import "JHUD.h"
 
 #pragma mark -  JHUDLoadingAnimationView Class
@@ -14,7 +14,7 @@
 #define JHUDDefaultBackGroundColor [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.2]
 #define JHUDForegroundColor [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.6]
 
-@interface JHUDLoadingAnimationView ()
+@interface JHUDAnimationView ()
 
 @property (nonatomic,strong) CAReplicatorLayer * replicatorLayer ;
 
@@ -27,7 +27,7 @@
 @end
 
 
-@implementation JHUDLoadingAnimationView
+@implementation JHUDAnimationView
 
 - (instancetype)init
 {
