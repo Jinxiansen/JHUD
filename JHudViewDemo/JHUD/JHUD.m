@@ -124,7 +124,6 @@
             [self.loadingView removeSubLayer];
         }
     }];
-    
 }
 
 -(void)setGifImageData:(NSData *)gifImageData
@@ -165,8 +164,8 @@
 -(void)setIndicatorBackGroundColor:(UIColor *)indicatorBackGroundColor
 {
     _indicatorBackGroundColor = indicatorBackGroundColor;
+
     self.loadingView.defaultBackGroundColor = _indicatorBackGroundColor;
-    
 }
 
 -(void)setIndicatorForegroundColor:(UIColor *)indicatorForegroundColor
@@ -174,7 +173,6 @@
     _indicatorForegroundColor = indicatorForegroundColor;
     
     self.loadingView.foregroundColor = _indicatorForegroundColor;
-    
 }
 
 +(BOOL)requiresConstraintBasedLayout
@@ -271,7 +269,6 @@
     if (_messageLabel) {
         return _messageLabel;
     }
-    
     self.messageLabel = [UILabel new];
     self.messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.messageLabel.textAlignment = NSTextAlignmentCenter ;
@@ -289,7 +286,6 @@
     if (_refreshButton) {
         return _refreshButton;
     }
-    
     self.refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.refreshButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.refreshButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
@@ -362,7 +358,6 @@
     } else {
         self.refreshButton.hidden = YES;
     }
-    
 }
 
 // When JHUDLoadingType >2, there will be a "refresh" button, and the method.
