@@ -13,13 +13,13 @@
  
 ##screenshots
 
- ![](gif/1.gif) 
- ![](gif/2.gif)
- ![](gif/3.gif)
- ![](gif/4.gif)
- ![](gif/5.gif)
- ![](gif/6.gif)
- ![](gif/7.gif)
+ ![](gif/1.gif =200x352) 
+ ![](gif/2.gif =200x352)
+ ![](gif/3.gif =200x352)
+ ![](gif/4.gif =200x352)
+ ![](gif/5.gif =200x352)
+ ![](gif/6.gif =200x352)
+ ![](gif/7.gif =200x352)
 
 
 ## Requirements
