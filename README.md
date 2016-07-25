@@ -19,7 +19,6 @@
 <img src="gif/4.gif" width="25%">
 <img src="gif/5.gif" width="25%">
 <img src="gif/6.gif" width="25%">
-<img src="gif/7.gif" width="25%">
 
 
 ## Requirements
