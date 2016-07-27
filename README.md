@@ -10,6 +10,7 @@
 #### ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: 
 ####[中文说明](README.zh.md)
 ######[简书介绍](http://www.jianshu.com/p/fc07f027680c)
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=29947420&auto=1&height=66"></iframe>
  
 ##screenshots
 

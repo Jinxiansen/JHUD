@@ -19,9 +19,7 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 
 @interface JHUD : UIView
 
-/**
- *  When JHUDLoadingTypeFailure, there will be a "refresh" button, and the method.
- */
+// When JHUDLoadingTypeFailure, there will be a "refresh" button, and the method.
 @property (nonatomic,copy)  void(^JHUDReloadButtonClickedBlock)();
 
 @property (nonatomic,strong) UIView  *indicatorView;
@@ -31,24 +29,18 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 @property (nonatomic,strong) UIButton * refreshButton;
 
 // Default color is [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.2]
-@property (nonatomic,strong) UIColor  *indicatorBackGroundColor;//
+@property (nonatomic,strong) UIColor  *indicatorBackGroundColor;
 
 // Default color is  [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.6]
 @property (nonatomic,strong) UIColor  *indicatorForegroundColor;
 
-/**
- *  Only JHUDLoadingType is JHUDLoadingTypeCustomAnimations or JHUDLoadingTypeFailure, indicatorViewSize values can be changed.
- */
+// Only JHUDLoadingType is JHUDLoadingTypeCustomAnimations or JHUDLoadingTypeFailure, indicatorViewSize values can be changed.
 @property (nonatomic,assign) CGSize indicatorViewSize;
 
-/**
- *  You need to read from the NSbundle GIF image and converted to NSData .
- */
+// You need to read from the NSbundle GIF image and converted to NSData.
 @property (nonatomic) NSData  *gifImageData;
 
-/**
- *  Only when JHUDLoadingType is JHUDLoadingTypeCustomAnimations will only take effect .
- */
+// Only when JHUDLoadingType is JHUDLoadingTypeCustomAnimations will only take effect.
 @property (nonatomic,strong) NSArray  *customAnimationImages;
 
 @property (nonatomic,strong) UIImage  *customImage;
