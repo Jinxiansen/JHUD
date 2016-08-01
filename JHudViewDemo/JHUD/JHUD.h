@@ -45,12 +45,23 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 
 @property (nonatomic,strong) UIImage  *customImage;
 
+#pragma mark - Instance methods
+#pragma mark - Show HUD
 -(void)showAtView:(UIView *)view hudType:(JHUDLoadingType)hudType;
 
+#pragma mark - Hide HUD
 -(void)hide;
 
+/**
+ *  Disappear after the afterDelay.
+ *
+ *  @param afterDelay
+ */
+-(void)hideAfterDelay:(NSTimeInterval)afterDelay;
 
-#pragma mark - Class method
+
+#pragma mark - Class methods
+#pragma mark - Show HUD
 
 /**
  *  This method of JHUDLoadingType default is JHUDLoadingTypeCircle.
@@ -61,6 +72,8 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 +(void)showAtView:(UIView *)view message:(NSString *)message;
 
 +(void)showAtView:(UIView *)view message:(NSString *)message hudType:(JHUDLoadingType)hudType;
+
+#pragma mark - Hide HUD
 
 +(void)hide;
 

@@ -95,7 +95,6 @@
 
 -(void)showAnimationAtView:(UIView *)view animationType:(JHUDAnimationType)animationType
 {
-
     [self dispatchMainQueue:^{
         [self removeSubLayer];
     }];

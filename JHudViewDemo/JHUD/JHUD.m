@@ -67,7 +67,7 @@
 
 -(void)showAtView:(UIView *)view hudType:(JHUDLoadingType)hudType
 {
-    NSAssert(![self isEmptySize], @"啊! self 的 size 没有设置正确 ！self.frame not be nil(JHudView)");
+    NSAssert(![self isEmptySize], @"啊! JHUD 的 size 没有设置正确 ！self.frame not be nil(JHUD)");
     
     self.hudType = hudType;
     
@@ -116,6 +116,7 @@
     }
 }
 
+
 -(void)hide
 {
     [self dispatchMainQueue:^{
@@ -124,6 +125,11 @@
             [self.loadingView removeSubLayer];
         }
     }];
+}
+
+-(void)hideAfterDelay:(NSTimeInterval)afterDelay
+{
+    [self performSelector:@selector(hide) withObject:nil afterDelay:afterDelay];
 }
 
 -(void)setGifImageData:(NSData *)gifImageData

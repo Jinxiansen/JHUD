@@ -36,6 +36,7 @@
     [self.tableView reloadData];
 }
 
+
 #pragma mark  --  <UITableViewDelegate,UITableViewDataSource>
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -53,7 +54,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.textLabel.text = _datas[indexPath.row];
-
+    
     return cell;
 }
 
