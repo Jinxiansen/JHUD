@@ -4,13 +4,14 @@
 [![License](https://img.shields.io/cocoapods/l/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
 [![Platform](https://img.shields.io/cocoapods/p/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
 [![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
+[![Weibo](https://img.shields.io/badge/Sina微博-@晋先森-yellow.svg?style=flat)](http://weibo.com/3205872327)
 
 ####`JHUD` is a full screen of the HUD when loading the data (Objective-C) .
 
 #### ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: 
 ####[中文说明](README.zh.md)
 ######[简书介绍](http://www.jianshu.com/p/fc07f027680c)
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=29947420&auto=1&height=66"></iframe>
+<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=29947420&auto=1&height=66"></iframe>-->
  
 ##screenshots
 
@@ -79,7 +80,7 @@ For more examples, including how to use JHUD , take a look at the bundled demo p
 
 ####If you wish to contact me, email at: hi@jinxiansen.com
 
-#####Sina : [@晋先森](http://weibo.com/3205872327/)
+#####Sina : [@晋先森](http://weibo.com/3205872327)
 #####Twitter : [@jinxiansen](https://twitter.com/jinxiansen)
 
 ## License
