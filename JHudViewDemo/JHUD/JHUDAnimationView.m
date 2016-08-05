@@ -1,5 +1,5 @@
 //
-//  JHUDLoadingAnimationView.m
+//  JHUDAnimationView.m
 //  JHudViewDemo
 //
 //  Created by 晋先森 on 16/7/16.

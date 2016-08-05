@@ -9,14 +9,9 @@
 #import "JHUD.h"
 #import "JHUDAnimationView.h"
 #import "UIView+JHUD.h"
-#import <objc/runtime.h>
 #import "UIImage+JHUD.h"
 
 #define KLastWindow [[UIApplication sharedApplication].windows lastObject]
-
-#define JOBJCSetObject(object,value)  objc_setAssociatedObject(object,@"JHUDOBJC" , value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-
-#define JOBJCGetObject(object) objc_getAssociatedObject(object, @"JHUDOBJC")
 
 //#define JHUDMainThreadAssert() NSAssert([NSThread isMainThread], @"JHUD needs to be accessed on the main thread.");
 
@@ -92,30 +87,19 @@
     JHUD * hud = [[self alloc]initWithFrame:view.bounds];
     hud.messageLabel.text = message;
 
-    JOBJCSetObject(self, hud);
-
     [hud showAtView:view hudType:hudType];
 }
 
-//+(void)hideForView:(UIView *)view
-//{
-//    NSEnumerator *subviewsEnum = [view.subviews reverseObjectEnumerator];
-//    for (UIView *subview in subviewsEnum) {
-//        if ([subview isKindOfClass:self]) {
-//            JHUD * hud = (JHUD *)subview;
-//            [hud hide];
-//        }
-//    }
-//}
-
-+(void)hide
++(void)hideForView:(UIView *)view
 {
-    JHUD * hud = JOBJCGetObject(self);
-    if (hud) {
-        [hud hide];
+    NSEnumerator *subviewsEnum = [view.subviews reverseObjectEnumerator];
+    for (UIView *subview in subviewsEnum) {
+        if ([subview isKindOfClass:self]) {
+            JHUD * hud = (JHUD *)subview;
+            [hud hide];
+        }
     }
 }
-
 
 -(void)hide
 {

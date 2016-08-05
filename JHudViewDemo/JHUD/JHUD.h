@@ -75,7 +75,7 @@ typedef NS_ENUM(NSUInteger, JHUDLoadingType) {
 
 #pragma mark - Hide HUD
 
-+(void)hide;
++(void)hideForView:(UIView *)view;
 
 @end
 

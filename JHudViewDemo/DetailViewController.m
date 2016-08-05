@@ -156,6 +156,7 @@
     self.hudView.customImage = [UIImage imageNamed:@"nullData"];
 
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeFailure];
+
 }
 
 -(void)classMethod
@@ -165,7 +166,7 @@
     [JHUD showAtView:self.view message:@"I'm a class method."];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [JHUD hide];
+        [JHUD hideForView:self.view];
     });
     
 }
