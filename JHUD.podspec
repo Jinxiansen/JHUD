@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "JHUD"
-  s.version      = "0.2.0"
+  s.version      = "0.3.0"
   s.summary      = "A full screen of the Hud when loading the data (Objective-C)."
   s.homepage     = "https://github.com/jinxiansen/JHUD"
   s.license      = "MIT (LICENSE)"
