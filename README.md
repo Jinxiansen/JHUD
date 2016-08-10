@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/cocoapods/l/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
 [![Platform](https://img.shields.io/cocoapods/p/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
 [![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
+![Language](https://img.shields.io/badge/Language-%20Objective%20C%20-blue.svg)
 [![Weibo](https://img.shields.io/badge/Sina微博-@晋先森-yellow.svg?style=flat)](http://weibo.com/3205872327)
 [![GitHub stars](https://img.shields.io/github/stars/jinxiansen/JHUD.svg)](https://github.com/jinxiansen/JHUD/stargazers)
 

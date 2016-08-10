@@ -21,6 +21,8 @@
 
 @property (nonatomic) JHUD *hudView;
 
+@property (nonatomic) CGRect orignalRect;
+
 @end
 
 @implementation DetailViewController
@@ -29,7 +31,7 @@
     [super viewDidLoad];
 
     self.title = self.selName;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor lightGrayColor];
 
     // 建议基类中Lazy创建，进行二次封装，使用时直接调用，避免子类中频繁创建产生冗余代码的问题。
     self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
@@ -39,7 +41,6 @@
         NSLog(@"refreshButton");
         [_self loadingCustomAnimations];
     }];
-
 
     SEL sel = NSSelectorFromString(self.selName);
 #pragma clang diagnostic push
@@ -171,7 +172,15 @@
     
 }
 
-
+// 横竖屏适配的话，只需在此更新hudView本身的frame即可。
+-(void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.hudView.frame = CGRectMake(10,
+                                    10,
+                                    self.view.frame.size.width - 20,
+                                    self.view.frame.size.height - 20);
+}
 
 -(void)hide
 {

@@ -335,10 +335,9 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    
 }
 
-#pragma mark  --  Other method
+#pragma mark - other method
 
 -(void)isShowRefreshButton:(BOOL)isShowRefreshButton
 {
