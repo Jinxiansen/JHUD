@@ -1,4 +1,4 @@
-<img src="gif/JHUDLogo.png" width="100%">
+<img src="gif/JHUDLogo.png" width="60%">
 
 [![Version](https://img.shields.io/cocoapods/v/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
 [![License](https://img.shields.io/cocoapods/l/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
