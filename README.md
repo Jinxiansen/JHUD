@@ -78,13 +78,13 @@ Class method :
 
 For more examples, including how to use JHUD , take a look at the bundled demo project. API documentation is provided in the header file (JHUD.h).
 
-## Contacts
+## Contacts	![](gif/zz.jpg)
 
 ####If you wish to contact me, email at: hi@jinxiansen.com
 
 #####Sina : [@晋先森](http://weibo.com/3205872327)
 #####Twitter : [@jinxiansen](https://twitter.com/jinxiansen)
 
-## License
+## License	
 
 JHUD is released under the [MIT license](LICENSE). See LICENSE for details.
