@@ -2,8 +2,9 @@
 //  JHUD.m
 //  JHudViewDemo
 //
-//  Created by 晋先森 https://github.com/jinxiansen on 16/7/11.
+//  Created by 晋先森 on 16/7/11.
 //  Copyright © 2016年 晋先森. All rights reserved.
+//  https://github.com/jinxiansen
 //
 
 #import "JHUD.h"
@@ -172,16 +173,15 @@
 
 - (void)setupSubViewsWithHudType:(JHUDLoadingType)hudType
 {
-    hudType == JHUDLoadingTypeFailure ?
-    [self isShowRefreshButton:YES]:
-    [self isShowRefreshButton:NO];
+    hudType == JHUDLoadingTypeFailure ? [self isShowRefreshButton:YES]:
+                                        [self isShowRefreshButton:NO];
     
     if ( hudType >2 ) {
         self.imageView.hidden = NO;
         [self.loadingView removeFromSuperview];
         
     }else
-        {
+    {
         self.imageView.hidden = YES;
         
         //The size of the fixed loadingView .
@@ -190,7 +190,7 @@
         if (!self.loadingView.superview) {
             [self.indicatorView addSubview:self.loadingView];
         }
-        }
+    }
     
     switch (hudType) {
         case JHUDLoadingTypeCircle:

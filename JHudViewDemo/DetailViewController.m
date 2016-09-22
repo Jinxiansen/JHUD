@@ -55,14 +55,7 @@
 -(void)rightButtonClick:(UIButton *)button
 {
     button.selected = !button.selected;
-
-    if (button.selected) {
-        [self hide];
-    }else
-    {
-        [self loadingFailure];
-    }
-
+    button.selected ? [self hide] : [self loadingFailure];
 }
 
 -(UIButton *)rightButton
@@ -165,7 +158,7 @@
     self.rightButton.hidden = YES;
 
     [JHUD showAtView:self.view message:@"I'm a class method."];
-
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [JHUD hideForView:self.view];
     });
@@ -176,10 +169,11 @@
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.hudView.frame = CGRectMake(10,
-                                    10,
-                                    self.view.frame.size.width - 20,
-                                    self.view.frame.size.height - 20);
+    CGFloat padding = 0;
+    self.hudView.frame = CGRectMake(padding,
+                                    padding,
+                                    self.view.frame.size.width - padding*2,
+                                    self.view.frame.size.height - padding*2);
 }
 
 -(void)hide
@@ -187,7 +181,6 @@
     [self.hudView hide];
 
 }
-
 
 
 - (void)didReceiveMemoryWarning {

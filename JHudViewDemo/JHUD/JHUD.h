@@ -2,8 +2,9 @@
 //  JHUD.h
 //  JHUDDemo
 //
-//  Created by 晋先森 https://github.com/jinxiansen on 16/7/11.
+//  Created by 晋先森 on 16/7/11.
 //  Copyright © 2016年 晋先森. All rights reserved.
+//  https://github.com/jinxiansen
 //
 
 #import <UIKit/UIKit.h>

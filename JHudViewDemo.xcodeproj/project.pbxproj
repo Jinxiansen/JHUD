@@ -143,6 +143,7 @@
 				TargetAttributes = {
 					41BDF33A1D3399B90013BA46 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 6RP225P6JQ;
 					};
 				};
 			};
@@ -301,6 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6RP225P6JQ;
 				INFOPLIST_FILE = JHudViewDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -313,6 +315,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6RP225P6JQ;
 				INFOPLIST_FILE = JHudViewDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
