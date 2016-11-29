@@ -31,7 +31,7 @@
     [super viewDidLoad];
 
     self.title = self.selName;
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 
     // 建议基类中Lazy创建，进行二次封装，使用时直接调用，避免子类中频繁创建产生冗余代码的问题。
     self.hudView = [[JHUD alloc]initWithFrame:self.view.bounds];
@@ -39,7 +39,7 @@
     __weak typeof(self)  _self = self;
     [self.hudView setJHUDReloadButtonClickedBlock:^() {
         NSLog(@"refreshButton");
-        [_self loadingCustomAnimations];
+        [_self customAnimation];
     }];
 
     SEL sel = NSSelectorFromString(self.selName);
@@ -52,10 +52,10 @@
 
 }
 
--(void)rightButtonClick:(UIButton *)button
+- (void)rightButtonClick:(UIButton *)button
 {
     button.selected = !button.selected;
-    button.selected ? [self hide] : [self loadingFailure];
+    button.selected ? [self hide] : [self failure];
 }
 
 -(UIButton *)rightButton
@@ -74,7 +74,7 @@
     return self.rightButton;
 }
 
--(void)loadingCircleAnimation
+- (void)circleAnimation
 {
     self.hudView.messageLabel.text = @"Hello ,this is a circle animation";
     self.hudView.indicatorBackGroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.1];
@@ -82,7 +82,7 @@
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircle];
 }
 
--(void)loadingCircleJoinAnimation
+- (void)circleJoinAnimation
 {
     self.hudView.messageLabel.text = @"Hello ,this is a circleJoin animation";
     self.hudView.indicatorForegroundColor = JHUDRGBA(60, 139, 246, .5);
@@ -90,7 +90,7 @@
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeCircleJoin];
 }
 
--(void)loadingDotAnimation
+- (void)dotAnimation
 {
     self.hudView.messageLabel.text = @"Hello ,this is a dot animation";
     self.hudView.indicatorBackGroundColor = [UIColor whiteColor];
@@ -99,7 +99,7 @@
 }
 
 
--(void)loadingCustomAnimations
+- (void)customAnimation
 {
     NSMutableArray * images = [NSMutableArray array];
     for (int index = 0; index<=19; index++) {
@@ -119,7 +119,7 @@
     // http://spiffygif.com
 }
 
--(void)loadingGifAnimations
+- (void)gifAnimations
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"loadinggif3" ofType:@"gif"];
     NSData *data = [NSData dataWithContentsOfFile:path];
@@ -130,8 +130,7 @@
     [self.hudView showAtView:self.view hudType:JHUDLoadingTypeGifImage];
 }
 
-
--(void)loadingFailure
+- (void)failure
 {
     self.hudView.indicatorViewSize = CGSizeMake(100, 100);
     self.hudView.messageLabel.text = @"Can't get data, please make sure the interface is correct !";
@@ -142,7 +141,7 @@
 
 }
 
--(void)loadingFailure2
+- (void)failure2
 {
     self.hudView.indicatorViewSize = CGSizeMake(150, 150);
     self.hudView.messageLabel.text = @"Failed to get data, please try again later";
@@ -153,7 +152,7 @@
 
 }
 
--(void)classMethod
+- (void)classMethod
 {
     self.rightButton.hidden = YES;
 
@@ -165,8 +164,8 @@
     
 }
 
-// 横竖屏适配的话，只需在此更新hudView本身的frame即可。
--(void)viewWillLayoutSubviews
+// 横竖屏适配的话，在此更新hudView的frame。
+- (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     CGFloat padding = 0;
@@ -176,7 +175,7 @@
                                     self.view.frame.size.height - padding*2);
 }
 
--(void)hide
+- (void)hide
 {
     [self.hudView hide];
 

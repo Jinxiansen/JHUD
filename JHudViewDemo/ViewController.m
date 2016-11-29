@@ -23,13 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.datas = @[@"loadingCircleAnimation",
-                   @"loadingCircleJoinAnimation",
-                   @"loadingDotAnimation",
-                   @"loadingCustomAnimations",
-                   @"loadingGifAnimations",
-                   @"loadingFailure",
-                   @"loadingFailure2",
+    self.datas = @[@"circleAnimation",
+                   @"circleJoinAnimation",
+                   @"dotAnimation",
+                   @"customAnimation",
+                   @"gifAnimations",
+                   @"failure",
+                   @"failure2",
                    @"classMethod",
                    ];
     
