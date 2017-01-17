@@ -55,7 +55,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.textLabel.text = _datas[indexPath.row];
-    
+
     return cell;
 }
 
