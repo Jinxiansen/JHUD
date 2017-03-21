@@ -8,14 +8,13 @@
 [![Weibo](https://img.shields.io/badge/Sina微博-@晋先森-yellow.svg?style=flat)](http://weibo.com/3205872327)
 [![GitHub stars](https://img.shields.io/github/stars/jinxiansen/JHUD.svg)](https://github.com/jinxiansen/JHUD/stargazers)
 
-####`JHUD` is a full screen of the HUD when loading the data (Objective-C) .
+#### `JHUD` is a full screen of the HUD when loading the data (Objective-C) .
 
 #### ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: 
-####[中文说明](README.zh.md)
-######[简书介绍](http://www.jianshu.com/p/fc07f027680c)
+##### [中文说明](README.zh.md) / [简书介绍](http://www.jianshu.com/p/fc07f027680c)
 <!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=29947420&auto=1&height=66"></iframe>-->
  
-##screenshots
+## screenshots
 
 <img src="gif/1.gif" width="25%">
 <img src="gif/2.gif" width="25%">
@@ -31,7 +30,7 @@
 You will need the latest developer tools in order to build `JHUD`. Old Xcode versions might work, but compatibility will not be explicitly maintained.
 
 
-##CocoaPods
+## CocoaPods
 
 CocoaPods is the recommended way to add JHUD to your project.
 
@@ -80,10 +79,10 @@ For more examples, including how to use JHUD , take a look at the bundled demo p
 
 ## Contacts	![](gif/zz.jpg)
 
-####If you wish to contact me, email at: hi@jinxiansen.com
+#### If you wish to contact me, email at: hi@jinxiansen.com
 
-#####Sina : [@晋先森](http://weibo.com/3205872327)
-#####Twitter : [@jinxiansen](https://twitter.com/jinxiansen)
+##### Sina : [@晋先森](http://weibo.com/3205872327)
+##### Twitter : [@jinxiansen](https://twitter.com/jinxiansen)
 
 ## License	
 
