@@ -7,6 +7,7 @@
 ![Language](https://img.shields.io/badge/Language-%20Objective%20C%20-blue.svg)
 [![Weibo](https://img.shields.io/badge/Sina微博-@晋先森-yellow.svg?style=flat)](http://weibo.com/3205872327)
 [![GitHub stars](https://img.shields.io/github/stars/jinxiansen/JHUD.svg)](https://github.com/jinxiansen/JHUD/stargazers)
+[![Download](https://img.shields.io/cocoapods/dt/JHUD.svg)]
 
 #### `JHUD` is a full screen of the HUD when loading the data (Objective-C) .
 
@@ -72,7 +73,7 @@ Class method :
 ```
 [JHUD showAtView:self.view message:@"Hello, this is a message"];
 
-[JHUD hide];
+[JHUD hideForView:self.view];
 ```
 
 For more examples, including how to use JHUD , take a look at the bundled demo project. API documentation is provided in the header file (JHUD.h).

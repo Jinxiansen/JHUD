@@ -37,7 +37,7 @@ hudView.messageLabel.text = @"hello ,this is a circle animation";
 ```
 [JHUD showAtView:self.view message:@"Hello, this is a message"];
 
-[JHUD hide];
+[JHUD hideForView:self.view];
 ```
 
 
