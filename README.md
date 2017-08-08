@@ -15,7 +15,7 @@
 ##### [中文说明](README.zh.md) / [简书介绍](http://www.jianshu.com/p/fc07f027680c)
 <!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=29947420&auto=1&height=66"></iframe>-->
  
-## screenshots
+## Screenshots
 
 <img src="gif/1.gif" width="25%">
 <img src="gif/2.gif" width="25%">
@@ -35,7 +35,7 @@ You will need the latest developer tools in order to build `JHUD`. Old Xcode ver
 
 CocoaPods is the recommended way to add JHUD to your project.
 
-Add a pod entry for JHUD to your Podfile.
+First, add a pod entry for JHUD to your Podfile.
  
 ```
 pod 'JHUD'
@@ -45,7 +45,7 @@ Second, install JHUD into your project:
 ```
 pod install
 ```
-Include JHUD wherever you need it with `#import "JHUD.h"`.
+Third, include JHUD wherever you need it with `#import "JHUD.h"`.
 
 ## Manually
 
