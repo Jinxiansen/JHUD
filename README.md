@@ -17,13 +17,10 @@
  
 ## Screenshots
 
-<img src="gif/1.gif" width="25%">
-<img src="gif/2.gif" width="25%">
-<img src="gif/3.gif" width="25%">
-<img src="gif/4.gif" width="25%">
-<img src="gif/5.gif" width="25%">
-<img src="gif/6.gif" width="25%">
-
+|H|U|D|
+|:---:|:---:|:---:|
+|<img src="gif/1.gif" width="25%">|<img src="gif/2.gif" width="25%">|<img src="gif/3.gif" width="25%">|
+<img src="gif/4.gif" width="25%">|<img src="gif/5.gif" width="25%">|<img src="gif/6.gif" width="25%">|
 
 ## Requirements
 
@@ -88,3 +85,5 @@ For more examples, including how to use JHUD , take a look at the bundled demo p
 ## License	
 
 JHUD is released under the [MIT license](LICENSE). See LICENSE for details.
+
+
