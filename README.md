@@ -1,26 +1,24 @@
-<img src="gif/JHUDLogo.png" width="100%">
+<img src="gif/icon.png" width="100%">
 
 [![Version](https://img.shields.io/cocoapods/v/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
 [![License](https://img.shields.io/cocoapods/l/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
 [![Platform](https://img.shields.io/cocoapods/p/JHUD.svg?style=flat)](http://cocoapods.org/pods/JHUD)
 [![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
 ![Language](https://img.shields.io/badge/Language-%20Objective%20C%20-blue.svg)
-[![Weibo](https://img.shields.io/badge/Sina微博-@晋先森-yellow.svg?style=flat)](http://weibo.com/3205872327)
 [![GitHub stars](https://img.shields.io/github/stars/jinxiansen/JHUD.svg)](https://github.com/jinxiansen/JHUD/stargazers)
-[![Download](https://img.shields.io/cocoapods/dt/JHUD.svg)]
+![Download](https://img.shields.io/cocoapods/dt/JHUD.svg)
 
 #### `JHUD` is a full screen of the HUD when loading the data (Objective-C) .
 
 #### ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: 
 ##### [中文说明](README.zh.md) / [简书介绍](http://www.jianshu.com/p/fc07f027680c)
-<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=29947420&auto=1&height=66"></iframe>-->
- 
+
 ## Screenshots
 
 |H|U|D|
 |:---:|:---:|:---:|
-|<img src="gif/1.gif" width="25%">|<img src="gif/2.gif" width="25%">|<img src="gif/3.gif" width="25%">|
-<img src="gif/4.gif" width="25%">|<img src="gif/5.gif" width="25%">|<img src="gif/6.gif" width="25%">|
+|![image](gif/1.gif)|![image](gif/2.gif)|![image](gif/3.gif)|
+![image](gif/4.gif)|![image](gif/5.gif)|![image](gif/6.gif)|
 
 ## Requirements
 
@@ -78,7 +76,6 @@ For more examples, including how to use JHUD , take a look at the bundled demo p
 ## Contacts	![](gif/zz.jpg)
 
 #### If you wish to contact me, email at: hi@jinxiansen.com
-
 ##### Sina : [@晋先森](http://weibo.com/3205872327)
 ##### Twitter : [@jinxiansen](https://twitter.com/jinxiansen)
 
